@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAZIER-AST: Juego Cuadro Comparativo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ---------- ESTILOS GENERALES ---------- */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('tecnicas.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px 30px;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.activo {
+      color: #00ffcc;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 40px auto;
+      background: rgba(0,0,30,0.75);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #99ffcc;
+    }
+
+    .instructions {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.85);
+      color: #111;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #00e5ff;
+      color: #000;
+    }
+
+    input {
+      width: 90%;
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #999;
+    }
+
+    button {
+      background: #00e5ff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px 10px 0 0;
+      color: #000;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #00bcd4;
+    }
+
+    .results {
+      margin-top: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 8px;
+      color: #cfffff;
+    }
+
+    .correct { color: #80ff80; font-weight: bold; }
+    .missing { color: #ffd54f; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00e5ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width:900px){
+      header { flex-direction: column; gap: 10px; }
+      main { width: 90%; padding: 20px; }
+      input { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html" >Técnicas</a>
+      <a href="4comparativo.html"class="activo">Cuadro Comparativo</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+<br>
+<fieldset>
+        <section id="cuadrocomparativo" class="tecnica">
+            <h3>4. Cuadro comparativo</h3>
+<font color="#FFFFFF">
+            <p>Permite comparar conceptos, teorías o personajes en una tabla visual.</p>
+                <p>Es una tabla organizada que visualiza las semejanzas y diferencias entre dos o más elementos, objetos o conceptos para facilitar su comprensión y análisis</p>
+
+<center><img src="ccc.WEBP" align="center" width="600" height="300"  alt="Método Cornell"></center>
+
+             
+          <ol>
+<br><font color="#00FFFF"><li><p>Identificar los elementos a comparar: </p></li></font>
+<p>Elige los temas, productos u objetos que quieres comparar. Asegúrate de que sean relevantes para tu objetivo.</p>
+<font color="#00FFFF"><li><p>Seleccionar los criterios de comparación: </p></li></font>
+<p>Define los aspectos o parámetros clave que se utilizarán para la comparación, como características, diferencias, similitudes, precios o funciones.</p></li>
+
+<font color="#00FFFF"><li><p>Recopilar y resumir la información:</p></li></font>
+<p>Busca y reúne la información necesaria para cada elemento. Es crucial que la información sea concisa y esté resumida, evitando párrafos largos.</p>
+
+<font color="#00FFFF"><li><p>Estructurar el cuadro:
+</p></li></font>
+<ol>
+<p><li>Crea una tabla con columnas y filas.</li>
+<li>Coloca los elementos a comparar en las columnas superiores.</li>
+<li>Coloca los criterios de comparación en las filas de la izquierda.</li></p></ol>
+
+<font color="#00FFFF"><li><p>Rellenar las celdas:</p></li></font>
+<p> Llena cada celda con la información correspondiente, asegurándote de que sea clara y consistente. Puedes usar colores o iconos para que sea más fácil de leer y entender.</p>
+<font color="#00FFFF"><li><p>Analizar la información: </p></li></font>
+<p>Una vez completado, evalúa el cuadro para identificar las similitudes y diferencias más relevantes entre los elementos y tomar decisiones si es necesario. </p>
+</ol>
+
+<center><img src="cuadrocomparativo.jpeg" align="center" width="600" height="300" alt="Cuadro comparativo"></center>
+
+<font color="#00FFFF"><p>RECOMEDACIONES DE APPS</p></font>
+<ol>
+<font color="#FFFFFF"><li>Compare It<p></p></li></font>
+<font color="#FFFFFF"><li><p>Lucidchart</p></li></font>
+<font color="#FFFFFF"><li><p>Canva</p></li></font>
+<font color="#FFFFFF"><li><p>Microsoft Excel</p></li></font>
+<font color="#FFFFFF"><li><p>Google Sheets</p></li></font>
+</ol>
+<font color="#00FFFF"><p>RECOMEDACIONES DE JUEGOS</p></font>
+<ol>
+<font color="#FFFFFF"><li><p>Kahoot</p></li></font>
+<font color="#FFFFFF"><li><p>Quizlet</p></li></font>
+</ol>
+
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+
+<center>
+ <h1>PRUEBA LA TECNICA DEL CUADRO COMPARATIVO CON JAZIER AST</h1>
+
+</center>
+
+     </div>
+        </section>
+</font>
+</fieldset>
+        
+<br>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <h1> Juego Educativo: Cuadro Comparativo</h1>
+
+    <div class="instructions">
+      <h2> Instrucciones:</h2>
+      <p>El objetivo es practicar la técnica del <b>cuadro comparativo</b>. Debes completar la tabla comparando dos elementos:</p>
+      <ul>
+        <li>Escribe características de <b>León</b> y <b>Tigre</b> en sus respectivas columnas.</li>
+        <li>Intenta incluir información precisa y clara.</li>
+      </ul>
+      <p>Cuando termines, presiona <b>Comprobar</b> para recibir retroalimentación sobre tus respuestas.</p>
+    </div>
+
+    <!-- CUADRO COMPARATIVO -->
+    <table>
+      <tr>
+        <th>Característica</th>
+        <th>León</th>
+        <th>Tigre</th>
+      </tr>
+      <tr>
+        <td>Hábitat</td>
+        <td><input type="text" id="leoHabitat" placeholder="Escribe aquí"></td>
+        <td><input type="text" id="tigreHabitat" placeholder="Escribe aquí"></td>
+      </tr>
+      <tr>
+        <td>Alimentación</td>
+        <td><input type="text" id="leoAlim" placeholder="Escribe aquí"></td>
+        <td><input type="text" id="tigreAlim" placeholder="Escribe aquí"></td>
+      </tr>
+      <tr>
+        <td>Comportamiento</td>
+        <td><input type="text" id="leoComp" placeholder="Escribe aquí"></td>
+        <td><input type="text" id="tigreComp" placeholder="Escribe aquí"></td>
+      </tr>
+      <tr>
+        <td>Rasgos físicos</td>
+        <td><input type="text" id="leoRas" placeholder="Escribe aquí"></td>
+        <td><input type="text" id="tigreRas" placeholder="Escribe aquí"></td>
+      </tr>
+    </table>
+
+    <div>
+      <button id="checkBtn">Comprobar</button>
+      <button id="resetBtn">Borrar</button>
+    </div>
+
+    <div id="result" class="results" hidden></div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div>
+      <a href="inicio.html">Inicio</a> |
+      <a href="tecnicas.html">Técnicas</a> |
+      <a href="plantillas.html">Plantillas</a> |
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div>© 2025 JAZIER-AST | Desarrollado por JAZIER-AST</div>
+    <div>Contacto: Tel. 73212128 | Email: contacto@jazierast.com</div>
+  </footer>
+
+  <!-- SCRIPT DEL JUEGO -->
+  <script>
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const result = document.getElementById("result");
+
+    checkBtn.addEventListener("click", () => {
+      // Respuestas correctas
+      const answers = {
+        leoHabitat: ["sabana", "sabana africana", "africa"],
+        tigreHabitat: ["jungla", "selva", "asia", "bosque"],
+        leoAlim: ["carnívoro", "carne", "caza"],
+        tigreAlim: ["carnívoro", "carne", "caza"],
+        leoComp: ["social", "vive en manada", "manada"],
+        tigreComp: ["solitario", "solo", "caza solo"],
+        leoRas: ["melena", "pelaje dorado", "grande"],
+        tigreRas: ["rayas", "pelaje rayado", "grande"]
+      };
+
+      let score = 0;
+      let total = Object.keys(answers).length;
+
+      for (let id in answers) {
+        const userInput = document.getElementById(id).value.toLowerCase().trim();
+        if (answers[id].some(ans => userInput.includes(ans))) {
+          score++;
+        }
+      }
+
+      let message = "";
+      if (score === total) {
+        message = `<p class="correct">¡Excelente! Has completado correctamente el cuadro comparativo. </p>`;
+      } else if (score >= total / 2) {
+        message = `<p>Buen intento . Has acertado ${score} de ${total} respuestas.</p>`;
+      } else {
+        message = `<p> Aún puedes mejorar. Solo acertaste ${score} de ${total}. Revisa las características de cada animal.</p>`;
+      }
+
+      result.hidden = false;
+      result.innerHTML = `<h3>Resultados:</h3>${message}`;
+    });
+
+    resetBtn.addEventListener("click", () => {
+      const inputs = document.querySelectorAll("input");
+      inputs.forEach(input => input.value = "");
+      result.hidden = true;
+    });
+  </script>
+</body>
+</html>

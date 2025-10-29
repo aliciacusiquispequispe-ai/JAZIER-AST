@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAZIER-AST: Juego Técnica Cornell</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ----------- ESTILOS GENERALES ----------- */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('tecnicas.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    /* ----------- ENCABEZADO Y MENÚ ----------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px 30px;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.activo {
+      color: #00ffcc;
+    }
+
+    /* ----------- CONTENIDO PRINCIPAL ----------- */
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: rgba(0, 0, 30, 0.75);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #99ffcc;
+    }
+
+    .instructions {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .cornell-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-size: 15px;
+      background: rgba(255,255,255,0.85);
+      color: #111;
+    }
+
+    .summary-section {
+      grid-column: span 2;
+    }
+
+    button {
+      background: #00e5ff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px 10px 0 0;
+      color: #000;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #00bcd4;
+    }
+
+    .results {
+      margin-top: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 8px;
+      color: #cfffff;
+    }
+
+    .correct { color: #80ff80; font-weight: bold; }
+    .missing { color: #ffd54f; }
+
+    /* ----------- PIE DE PÁGINA ----------- */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00e5ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width:900px){
+      header { flex-direction: column; gap: 10px; }
+      main { width: 90%; padding: 20px; }
+      .cornell-container { grid-template-columns: 1fr; }
+      textarea { height: 150px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="3cornell.html" class="activo">Cornell</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+<br>
+<fieldset>
+        <section id="cornell" class="tecnica">
+            <h1>3. LA TECNICA DE CORNELL</h1>
+<font color="#FFFFFF">
+            <p>Divide tu hoja en secciones para anotar ideas, palabras clave y un resumen final.</p>
+         
+            <div id="info-cornell" class="informacion-detalle">
+                <p> es un sistema para tomar apuntes, creado por Walter Pauk en la Universidad de Cornell, que divide una hoja en cuatro secciones: una columna principal para las notas de clase, una columna izquierda para palabras clave y preguntas, una sección superior para el título, y una sección inferior para un resumen de la información.</p>
+<BR>
+                <center><img src="cornell.jpeg" align="center" width="600" height="600"  alt="Método Cornell"></center>
+       <br>
+<font color="#00FFFF"><h3>COMO DEBES USARLO</h3></font>
+<font color="#00FFFF"><p> Como Dividir tu hoja</font>
+<br>Dibuja una línea vertical que divida la página en dos columnas (una ancha a la derecha y una estrecha a la izquierda), y una línea horizontal que divida la parte inferior para crear un espacio para el resumen.  </p>
+ <br>
+  <center><img src="divide.jpg" align="center" width="600" height="600"  alt="Método Cornell"></center>
+
+<br><font color="#00FFFF"><p>como usar la plantilla</font>
+<ol> <li> El título nos permite indicar qué tema estamos repasando</li>
+<li>En la columna izquierda, de ideas clave, recogeremos las palabras y conceptos destacados que debemos desarrollar. En esta columna también anotaremos aquellas ideas o conceptos que nos generan dudas</li>
+<li>En la columna derecha desarrollaremos los conceptos clave. Aquí usaremos pequeños esquemas, mapas mentales o frase destacadas</li>
+<li>Pie de página: resumiremos en un par de líneas la información que se ha trabajado en las columnas. Este resumen debe ser la base de nuestro repaso, recogiéndose en las columnas las palabras clave y conceptos destacados</li></ol></p>
+<center><img src="inf.jpeg" align="center" width="600" height="300"  alt="Método Cornell"></center>
+
+<br><font color="#00FFFF"><p>La regla de las 6 R</font><br>
+Una de las fórmulas que plantea el Método Cornell para garantizar la correcta ejecución de este procedimiento de estudio y su efectividad es seguir la regla de las 6 R a la hora de tomar apuntes.
+<ol>
+<li>Registrar todos los datos importantes e ideas significativas que servirán de punto de partida para la elaboración de la hoja de apuntes</li>
+<li>Resumir y sintetizar toda la información para diferenciar ideas principales de secundarias</li>
+<li>Recitar en voz alta la plantilla para fijar los conceptos esenciales</li>
+<li>Reflexionar y analizar toda la información para evitar solamente memorizarla sin comprenderla</li>
+<li>Revisar los apuntes y anotaciones de forma periódica para afianzar la información relevante en la mente</li>
+<li>Recapitular la información de la plantilla para establecer jerarquías entre los conceptos y asociaciones que ayuden a afianzar las ideas clave del tema</li>
+</ol></p>
+
+<font color="#00FFFF"><p>BENEFICIOS</font>
+<ol>
+<li><font color="#00FFFF"><p>Aprendizaje activo</font></p></li>
+<li><font color="#00FFFF"><p>Mejor Organización</font></p></li>
+<li><font color="#00FFFF"><p>Mejora la memoria</font></p></li>
+</ol>
+
+<font color="#00FFFF"><p>RECOMEDACIONES DE APPS</p></font>
+<ol>
+<font color="#FFFFFF"><li>Evernote<p></p></li></font>
+<font color="#FFFFFF"><li><p>OneNote</p></li></font>
+<font color="#FFFFFF"><li><p>Simplenote</p></li></font>
+<font color="#FFFFFF"><li><p>Bear</p></li></font>
+<font color="#FFFFFF"><li><p>GoodNotes</p></li></font>
+</ol>
+<font color="#00FFFF"><p>RECOMEDACIONES DE JUEGOS</p></font>
+<ol>
+<font color="#FFFFFF"><li><p>SrudyBlue</p></li></font>
+<font color="#FFFFFF"><li><p>Kahoot</p></li></font>
+<font color="#FFFFFF"><li><p>Quizlet</p></li></font>
+</ol>
+<form action="tecnicas.html" method="get">
+    <button type="submit">Volver a la pagina de tecnicas</button>
+</form>
+<center>
+ <h1>PRUEBA LA TECNICA DE CORNELL CON JAZIER AST</h1>
+</center>
+
+     </div>
+        </section>
+</font>
+</fieldset>
+
+<br>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <h1> Juego Educativo: Técnica de Cornell</h1>
+
+    <div class="instructions">
+      <h2> Instrucciones:</h2>
+      <p>La <b>Técnica Cornell</b> te ayuda a organizar tus apuntes en tres secciones:</p>
+      <ul>
+        <li><b>Notas:</b> Aquí escribes los datos más importantes del tema (conceptos, hechos, ejemplos).</li>
+        <li><b>Pistas o preguntas:</b> Escribe palabras clave, preguntas o ideas que te ayuden a recordar la información.</li>
+        <li><b>Resumen:</b> Al final, redacta un breve resumen con tus propias palabras sobre lo que aprendiste.</li>
+      </ul>
+      <p>Usa las casillas de abajo para practicar con el tema <b>“La importancia de la lectura”</b>.  
+      Cuando termines, presiona <b>Comprobar</b> para recibir retroalimentación.</p>
+    </div>
+
+    <div class="cornell-container">
+      <div>
+        <h3> Pistas / Preguntas</h3>
+        <textarea id="cues" placeholder="Ejemplo: ¿Por qué leer mejora el conocimiento?"></textarea>
+      </div>
+
+      <div>
+        <h3> Notas</h3>
+        <textarea id="notes" placeholder="Anota los puntos clave del texto o clase aquí..."></textarea>
+      </div>
+
+      <div class="summary-section">
+        <h3>Resumen</h3>
+        <textarea id="summary" placeholder="Escribe un breve resumen sobre la importancia de la lectura..."></textarea>
+      </div>
+    </div>
+
+    <div>
+      <button id="checkBtn">Comprobar</button>
+      <button id="resetBtn">Borrar todo</button>
+    </div>
+
+    <div id="result" class="results" hidden></div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div>
+      <a href="inicio.html">Inicio</a> |
+      <a href="tecnicas.html">Técnicas</a> |
+      <a href="plantillas.html">Plantillas</a> |
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div>© 2025 JAZIER-AST | Desarrollado por JAZIER-AST</div>
+    <div>Contacto: Tel. 73212128 | Email: contacto@jazierast.com</div>
+  </footer>
+
+  <!-- SCRIPT DEL JUEGO -->
+  <script>
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const result = document.getElementById("result");
+
+    checkBtn.addEventListener("click", () => {
+      const cues = document.getElementById("cues").value.toLowerCase().trim();
+      const notes = document.getElementById("notes").value.toLowerCase().trim();
+      const summary = document.getElementById("summary").value.toLowerCase().trim();
+
+      if (!cues || !notes || !summary) {
+        alert("Completa las tres secciones antes de comprobar tu trabajo.");
+        return;
+      }
+
+      // Palabras clave esperadas
+      const keywords = ["lectura", "conocimiento", "comprensión", "aprendizaje", "vocabulario", "reflexión"];
+      let score = 0;
+
+      keywords.forEach(word => {
+        if (notes.includes(word) || summary.includes(word)) score++;
+      });
+
+      let message = "";
+      if (score >= 5) {
+        message = `<p class="correct">¡Excelente trabajo! Has captado las ideas centrales de la lectura. 📘</p>`;
+      } else if (score >= 3) {
+        message = `<p>Buen intento . Has identificado algunas ideas importantes.</p>
+                   <p class="missing">Prueba incluir palabras como: <b>${keywords.filter(k => !notes.includes(k) && !summary.includes(k)).join(", ")}</b>.</p>`;
+      } else {
+        message = `<p> Aún puedes mejorar. Intenta enfocarte en las ideas principales sobre la lectura y su importancia.</p>`;
+      }
+
+      result.hidden = false;
+      result.innerHTML = `<h3>Resultados:</h3>${message}`;
+    });
+
+    resetBtn.addEventListener("click", () => {
+      document.getElementById("cues").value = "";
+      document.getElementById("notes").value = "";
+      document.getElementById("summary").value = "";
+      result.hidden = true;
+    });
+  </script>
+</body>
+</html>

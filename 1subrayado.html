@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAZIER-AST: Técnicas de Estudio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* ==== ESTILOS GENERALES ==== */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('tecnicas.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.8);
+            padding: 15px 30px;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.activo {
+            color: #00ffcc;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 40px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #99ffcc;
+            font-size: 1.8em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer a { color:#00e5ff; margin:0 10px; text-decoration:none; }
+        footer a:hover { text-decoration:underline; }
+
+        @media(max-width:900px){
+            .contenedor{flex-direction:column;align-items:center;}
+            .bloque{width:90%;}
+            header.navbar{flex-direction:column; gap:10px; padding:15px 20px;}
+        }
+
+        /* ==== ESTILOS DEL JUEGO ==== */
+        :root{
+            --accent:#ffd54f;
+            --accent-2:#90caf9;
+            --correct:#b9f6ca;
+            --wrong:#ffcdd2;
+        }
+
+        .container {
+            max-width:820px;
+            margin:40px auto;
+            background: rgba(0, 0, 30, 0.7); /* 💙 Fondo oscuro semitransparente */
+            padding:22px;
+            border-radius:12px;
+            box-shadow:0 8px 24px rgba(0, 0, 0, 0.4);
+            color: #e0f7fa;
+        }
+
+        .container header {
+            display:flex;
+            gap:18px;
+            align-items:center;
+            background: none;
+        }
+
+        .container .logo {
+            width:64px;
+            height:64px;
+            border-radius:10px;
+            background:linear-gradient(135deg, var(--accent), var(--accent-2));
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            color:#222;
+        }
+
+        h1 { font-size:20px; margin:0; color:#99ffcc; }
+
+        p.lead { margin:8px 0 18px; color:#cfefff; }
+
+        .story {
+            line-height:1.6;
+            padding:12px;
+            border-radius:8px;
+            background:rgba(255,255,255,0.1);
+            border:1px solid rgba(255,255,255,0.2);
+        }
+
+        .sentence {
+            padding:4px 6px;
+            border-radius:6px;
+            cursor:pointer;
+            display:inline-block;
+            margin:2px;
+        }
+
+        .sentence:focus { outline:3px solid rgba(21,101,192,0.12); }
+
+        .sentence.highlighted {
+            background:linear-gradient(90deg,var(--accent),var(--accent-2));
+            color:#08223a;
+        }
+
+        .controls {
+            display:flex;
+            gap:8px;
+            margin-top:14px;
+            flex-wrap:wrap;
+        }
+
+        button {
+            border:0;
+            padding:10px 14px;
+            border-radius:10px;
+            background:#00e5ff;
+            color:#111;
+            cursor:pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        button:hover { transform: scale(1.05); }
+
+        button.ghost {
+            background:transparent;
+            color:#fff;
+            border:1px solid #ddd;
+        }
+
+        .hint {
+            margin-top:10px;
+            color:#b2ebf2;
+            font-size:14px;
+        }
+
+        .results {
+            margin-top:14px;
+            padding:12px;
+            border-radius:8px;
+            background:rgba(255,255,255,0.1);
+            color:#e0f7fa;
+        }
+
+        .score { font-weight:700; }
+
+        .explain {
+            font-size:14px;
+            margin-top:8px;
+            color:#cfefff;
+        }
+
+        .legend {
+            display:flex;
+            gap:8px;
+            margin-top:10px;
+        }
+
+        .legend span {
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .dot {
+            width:16px;
+            height:16px;
+            border-radius:4px;
+            background:var(--accent);
+        }
+
+        @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">JAZIER-AST</div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="tecnicas.html">Técnicas</a>
+		<a href="1subrayado.html" class="activo">Subrayado</a>
+            <a href="contactos.html">Contactos</a>
+        </nav>
+    </header>
+
+<fieldset>
+<section id="subrayado" class="tecnica"
+ <font color="#00FFFF">
+<center>
+        <h1>1. Subrayado</h1>
+</center>
+</font>
+
+
+<font color="#FFFFFF">
+        <p>Es RESALTAR la información importante de un texto.</p>
+        
+            <p class="texto-grande"> El subrayado es una técnica de estudio que consiste en resaltar las palabras, ideas y conceptos clave de un texto para facilitar su comprensión y memorización. Se realiza después de una lectura comprensiva y se pueden usar diferentes métodos, como el subrayado lineal (trazar líneas) o el resaltado con colores, que permiten jerarquizar la información. Sus principales beneficios son mejorar la atención, la concentración y la capacidad de síntesis, además de agilizar el repaso.</p>
+
+              <font color="#00FFFF"><p class="texto-grande">PASOS.</p></font>
+<center>
+            <img src="ppa.jpg" align="center" width="600" height="600" alt="Pasos para Subrayar">
+</center>
+
+          <font color="#00FFFF"> <h2>VENTAJAS DEL SUBRAYADO</h2> </font>
+<ol>
+ <li><font color="#FFFFFF"> <p>Libera la memoria</p></font></li>
+ <li><font color="#FFFFFF"> <p>Facilita la relectura y el repaso</p></font></li>
+ <li><font color="#FFFFFF"> <p>Desarrolla la lectura activa</p></font></li>
+ <li><font color="#FFFFFF"> <p>Potencia el uso de claves memo-tecnicas</p></font></li>
+</ol>
+<font color="#00FFFF"> <h2>JERARQUIA DE COLORES DEL SUBRAYADO</h2> </font>
+<center>
+	 <img src="suc.jpg" alt="Jerarquía de Subrayado" width="600" height="300">
+</center>
+            
+                 <font color="#00FFFF"><h2>TIPOS Y ESTILOS DE SUBRAYADO</h2></font>
+ <font color="#FFFFFF"> <p>Es recomendable usar el tipo de subrayador que tenga mejor resultado como:</p></font>
+<ol>
+<li><font color="#FFFFFF"> <p>LAPICERO</p></font></li>
+<li><font color="#FFFFFF"> <p>LAPIZ</p></font></li>
+<li><font color="#FFFFFF"> <p>CUBRAYADORES DE COLORES</p></font></li>
+<li><font color="#FFFFFF"> <p>COLORES</p></font></li>
+<li><font color="#FFFFFF"> <p>BOLIGRAFOS DE COLORES, OTROS...</p></font></li>
+</ol>
+<center>
+            <img src="tips.webp" align="center" width="600" height="300" alt="Tipos de Subrayado">
+</center>
+
+             <font color="#00FFFF"><p class="texto-grande">CONSEJO PARA REALIZAR UN SUBRAYADO</p></font>
+<center>
+            <img src="conss.jpg" align="center" width="600" height="300" alt="Consejos Subrayado">
+</center>
+
+              <font color="#00FFFF"><p class="texto-grande">EJEMPLO:</p></font>
+            <p> Subraya de acuerdo a la jerarquia de colores, lo mas importante.</p>
+<center>
+            <img src="ej.jpg" width="600" height="600" alt="Ejemplo de Subrayado"></center>
+
+<font color="#00FFFF"><p class="texto-grande">RECOMENDACIONES DE APPS PARA REALIZAR SUBRAYADOS</p></font>
+<ol>
+<li><font color="#FFFFFF"> <p>MIXCAPTIONS</p></font></li>
+<li><font color="#FFFFFF"> <p>GET SUBTITLES</p></font></li>
+<li><font color="#FFFFFF"> <p>SUBTITLES APP</p></font></li>
+</ol>
+<br>
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+<center>
+ <h1>PRUEBA LA TECNICA DE SUBRAYADO CON JAZIER AST</h1>
+</center>
+
+        </div>
+    </section>
+</font>
+</fieldset>
+
+<br>
+
+    <!-- ==== JUEGO DE SUBRAYADO ==== -->
+    <div class="container">
+        <header>
+            <div class="logo">J-A</div>
+            <div>
+                <h1>Juego de subrayado: "El lápiz que quería rendirse"</h1>
+                <p class="lead">
+                    Lee el cuento y <strong>subraya</strong> las oraciones que consideres idea principal o ideas clave.
+                    Haz clic en cada frase para marcarla. Presiona "Comprobar" cuando termines.
+                </p>
+            </div>
+        </header>
+
+        <section class="story" aria-label="Cuento: El lápiz que quería rendirse">
+            <span class="sentence" data-id="s1" tabindex="0">Había una vez un pequeño lápiz llamado Lino, que vivía en una caja junto a otros lápices de colores.</span>
+            <span class="sentence" data-id="s2" tabindex="0">Cada día, la maestra lo usaba para escribir en el cuaderno de un niño llamado Mateo.</span>
+            <span class="sentence" data-id="s3" tabindex="0">Al principio, Lino estaba feliz de ayudar a Mateo a aprender.</span>
+            <span class="sentence" data-id="s4" tabindex="0">Pero con el tiempo comenzó a cansarse.</span>
+            <span class="sentence" data-id="s5" tabindex="0">—¡Estoy harto! —decía—.</span>
+            <span class="sentence" data-id="s6" tabindex="0">¡Cada día me desgastan más!</span>
+            <span class="sentence" data-id="s7" tabindex="0">Ya casi no tengo punta, y mis letras salen torcidas.</span>
+            <span class="sentence" data-id="s8" tabindex="0">Un día, la goma que vivía a su lado le respondió con voz suave: «No te rindas, Lino. ¿Sabes por qué existes? Para enseñar.»</span>
+            <span class="sentence" data-id="s9" data-correct="true">Cada palabra que escribes ayuda a Mateo a aprender algo nuevo.</span>
+            <span class="sentence" data-id="s10">Lino pensó un momento.</span>
+            <span class="sentence" data-id="s11">Miró las letras que había escrito: "Nunca te rindas".</span>
+            <span class="sentence" data-id="s12" data-correct="true">Entonces comprendió que su esfuerzo no era en vano.</span>
+            <span class="sentence" data-id="s13" data-correct="true">Aunque se gastara, cada trazo suyo dejaba un aprendizaje.</span>
+            <span class="sentence" data-id="s14">Desde ese día, Lino escribió con más orgullo, sabiendo que enseñar también era una forma de dejar huella.</span>
+        </section>
+
+        <div class="controls" role="group" aria-label="Controles del juego">
+            <button id="checkBtn">Comprobar</button>
+            <button id="clearBtn" class="ghost">Borrar selección</button>
+            <button id="hintBtn" class="ghost">Mostrar pista</button>
+        </div>
+
+        <div id="result" class="results" aria-live="polite" hidden></div>
+
+        <div class="hint" id="hintText" hidden>
+            Consejo: busca oraciones que expliquen la idea principal o el aprendizaje del cuento.
+        </div>
+
+        <div class="legend" aria-hidden="true">
+            <span><span class="dot" style="background:var(--accent)"></span> Selección</span>
+            <span><span class="dot" style="background:var(--correct)"></span> Correcto</span>
+            <span><span class="dot" style="background:var(--wrong)"></span> Incorrecto</span>
+        </div>
+
+        <footer>
+            <div class="explain">Haz clic o presiona Enter/Espacio para subrayar. Luego pulsa "Comprobar" para ver tus resultados.</div>
+        </footer>
+    </div>
+
+    <footer>
+	
+        <div>© 2025 JAZIER-AST | Créditos: Desarrollo por JAZIER-AST</div>
+        <div>Contacto: Teléfono 73212128 | Email: contacto@jazierast.com</div>
+    </footer>
+
+    <script>
+        const sentences = Array.from(document.querySelectorAll('.sentence'));
+        const checkBtn = document.getElementById('checkBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const hintBtn = document.getElementById('hintBtn');
+        const result = document.getElementById('result');
+        const hintText = document.getElementById('hintText');
+
+        sentences.forEach(s => {
+            s.addEventListener('click', () => toggle(s));
+            s.addEventListener('keydown', (e) => {
+                if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(s); }
+            });
+        });
+
+        function toggle(el){
+            el.classList.toggle('highlighted');
+            el.style.background = '';
+            el.style.color = '';
+            result.hidden = true;
+        }
+
+        clearBtn.addEventListener('click', () => {
+            sentences.forEach(s => s.classList.remove('highlighted'));
+            result.hidden = true;
+        });
+
+        hintBtn.addEventListener('click', () => {
+            hintText.hidden = !hintText.hidden;
+            hintBtn.textContent = hintText.hidden ? 'Mostrar pista' : 'Ocultar pista';
+        });
+
+        checkBtn.addEventListener('click', () => {
+            const selected = sentences.filter(s => s.classList.contains('highlighted'));
+            const correct = sentences.filter(s => s.dataset.correct === 'true');
+
+            let truePos = 0, falsePos = 0;
+            selected.forEach(s => s.dataset.correct === 'true' ? truePos++ : falsePos++);
+            let missed = correct.filter(c => !c.classList.contains('highlighted')).length;
+
+            sentences.forEach(s => {
+                s.style.background = '';
+                s.style.color = '';
+                s.style.border = '';
+            });
+
+            selected.forEach(s => {
+                if(s.dataset.correct === 'true'){
+                    s.style.background = 'linear-gradient(90deg,var(--correct),#e6f9e8)';
+                    s.style.color = '#08351a';
+                } else {
+                    s.style.background = 'linear-gradient(90deg,var(--wrong),#ffe9ea)';
+                    s.style.color = '#3a0b0b';
+                }
+            });
+
+            correct.forEach(c => {
+                if(!c.classList.contains('highlighted')){
+                    c.style.border = '2px dashed rgba(23,160,84,0.24)';
+                }
+            });
+
+            const totalCorrect = correct.length;
+            const score = Math.max(0, truePos - falsePos);
+            result.hidden = false;
+            result.innerHTML = `
+                <div class="score">Resultado: ${score} punto(s) — ${truePos} correctas, ${falsePos} incorrectas, ${missed} omitida(s).</div>
+                <div>Ideas clave esperadas: ${totalCorrect}.</div>
+                <div style="margin-top:8px;color:#b2ebf2">Sugerencia: selecciona las oraciones que expresen la lección o el propósito del texto.</div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAZIER-AST: Juego del Resumen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ----------- ESTILO GENERAL ----------- */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('tecnicas.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    /* ----------- ENCABEZADO Y MENÚ ----------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.8);
+      padding: 15px 30px;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.activo {
+      color: #00ffcc;
+    }
+
+    /* ----------- CONTENIDO PRINCIPAL ----------- */
+    main {
+      max-width: 950px;
+      margin: 40px auto;
+      background: rgba(0, 0, 30, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00e5ff;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #99ffcc;
+    }
+
+    .story {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 130px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-size: 15px;
+      background: rgba(255,255,255,0.8);
+      color: #111;
+    }
+
+    button {
+      background: #00e5ff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px 10px 0 0;
+      color: #000;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #00bcd4;
+    }
+
+    .results {
+      margin-top: 15px;
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 8px;
+      color: #cfffff;
+    }
+
+    .correct {
+      color: #80ff80;
+      font-weight: bold;
+    }
+
+    .missing {
+      color: #ffd54f;
+    }
+
+    /* ----------- PIE DE PÁGINA ----------- */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00e5ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width:900px){
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      main {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO Y MENÚ -->
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="2resumen.html"class="activo">Resumen</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+
+
+<fieldset>
+        <section id="resumen" class="tecnica">
+            <h1>2. Resumen</h1>
+<font color="#FFFFFF">
+	<p>Reescribe la información principal con tus propias palabras.</p>
+           
+            <div id="info-resumen" class="informacion-detalle">
+	<p>Un resumen es una versión abreviada y concisa de un texto original que presenta sus ideas principales de manera objetiva, fiel y sin interpretaciones. Su propósito es ofrecer una visión general del contenido para facilitar su comprensión, ahorrar tiempo de lectura y servir como herramienta de estudio o de consulta rápida.</p>
+<font color="#00FFFF">PASOS<p></font>
+<center>
+	<img src="rp.png" align="center" width="600" height="300" alt="Resumen"></center>
+<BR>
+<font color="#00FFFF">LOS BENEFICIOS DE LA TECNICA DE RESUMEN<p></font>
+<ol>
+<li><font color="#00FFFF">Estudio:<p></font></li>
+<p> Permite a los estudiantes captar la esencia de un texto para prepararse para exámenes o comprender mejor un tema.  </p>
+
+<li><font color="#00FFFF"><p>Acceso rápido:</font></li>
+<p> Sirve para evaluar rápidamente si un texto completo es relevante para un lector y ahorrarle tiempo. </p>
+
+<li><font color="#00FFFF"><p>Divulgación:</font></li>
+<p>Se usa en la contraportada de libros para presentar la trama o en artículos para resumir la información.  </p>
+<ol>
+
+  <center>
+	<img src="resumen.jpeg" align="center" width="600" height="300" alt="Resumen"></center>
+
+<font color="#00FFFF"><p>RECOMEDACIONES DE APPS</p></font>
+<ol>
+<font color="#FFFFFF"><li>Evernote<p></p></li></font>
+<font color="#FFFFFF"><li><p>Quip</p></li></font>
+<font color="#FFFFFF"><li><p>SummarizeBot</p></li></font>
+<font color="#FFFFFF"><li><p>Bear</p></li></font>
+</ol>
+<font color="#00FFFF"><p>RECOMEDACIONES DE JUEGOS</p></font>
+<ol>
+<font color="#FFFFFF"><li><p>SrudyBlue</p></li></font>
+<font color="#FFFFFF"><li><p>Kahoot</p></li></font>
+<font color="#FFFFFF"><li><p>Quizlet</p></li></font>
+</ol>
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+<center>
+ <h1>PRUEBA LA TECNICA DE RESUMEN CON JAZIER AST</h1>
+</center>
+
+             </div>
+</section>
+</font>
+</fieldset>
+<br>
+<fieldset
+
+  <!-- TÍTULO PRINCIPAL -->
+  <main>
+    <h1> Juego Educativo: Aplica la Técnica del Resumen</h1>
+    <p style="text-align:center;">Lee el texto, escribe tu resumen y presiona <b>Comprobar</b> para recibir retroalimentación.</p>
+
+    <!-- TEXTO PARA RESUMIR -->
+    <h2>Texto: "El valor del esfuerzo"</h2>
+    <div class="story">
+      En una pequeña aldea vivía un joven llamado Tomás que soñaba con ser músico. Todos los días practicaba con su guitarra, aunque al principio sus melodías sonaban mal.  
+      Algunos vecinos se burlaban de él y le decían que nunca lograría nada.  
+      Sin rendirse, Tomás siguió practicando con paciencia y dedicación.  
+      Gracias a su esfuerzo constante, logró tocar una hermosa melodía que emocionó a todos.  
+      Desde entonces, los niños del pueblo aprendieron que la práctica y la perseverancia convierten los sueños en realidad.
+    </div>
+
+    <!-- CAMPO PARA ESCRIBIR RESUMEN -->
+    <h3> Escribe tu resumen aquí:</h3>
+    <textarea id="summaryInput" placeholder="Escribe aquí tu resumen del texto..."></textarea>
+
+    <div>
+      <button id="checkBtn">Comprobar resumen</button>
+      <button id="resetBtn">Borrar</button>
+    </div>
+
+    <div class="results" id="result" hidden></div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div>
+      <a href="inicio.html">Inicio</a> |
+      <a href="tecnicas.html">Técnicas</a> |
+      <a href="plantillas.html">Plantillas</a> |
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div>© 2025 JAZIER-AST | Desarrollado por JAZIER-AST</div>
+    <div>Contacto: Tel. 73212128 | Email: contacto@jazierast.com</div>
+  </footer>
+
+  <!-- SCRIPT DEL JUEGO -->
+  <script>
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const result = document.getElementById("result");
+    const input = document.getElementById("summaryInput");
+
+    // Palabras clave que representan las ideas principales del texto
+    const keywords = ["esfuerzo", "practicar", "perseverancia", "logró", "melodía", "sueños"];
+
+    checkBtn.addEventListener("click", () => {
+      const text = input.value.toLowerCase().trim();
+      if (text === "") {
+        alert("Por favor, escribe tu resumen antes de comprobarlo.");
+        return;
+      }
+
+      let correctWords = 0;
+      keywords.forEach(word => {
+        if (text.includes(word)) correctWords++;
+      });
+
+      const total = keywords.length;
+      let message = "";
+
+      if (correctWords === total) {
+        message = `<p class="correct">¡Excelente!  Has captado todas las ideas principales del texto.</p>`;
+      } else if (correctWords >= total / 2) {
+        message = `<p> Buen intento. Has identificado ${correctWords} de ${total} ideas clave.</p>
+                   <p class="missing">Sugerencia: podrías incluir palabras como <b>${keywords.filter(k => !text.includes(k)).join(", ")}</b>.</p>`;
+      } else {
+        message = `<p> Aún te falta comprender mejor el texto.</p>
+                   <p class="missing">Recuerda incluir ideas sobre el esfuerzo, la práctica y la perseverancia.</p>`;
+      }
+
+      result.hidden = false;
+      result.innerHTML = `<h3>Resultados:</h3>${message}`;
+    });
+
+    resetBtn.addEventListener("click", () => {
+      input.value = "";
+      result.hidden = true;
+    });
+  </script>
+</body>
+</html>
+
+
+
+    
