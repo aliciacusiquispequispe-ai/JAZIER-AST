@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JAZIER-AST | Juegos</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: #000 url('fondo.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .neblina {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 70%);
+      animation: moverNeblina 20s infinite linear;
+      opacity: 0.35; z-index: 0; pointer-events: none;
+    }
+    @keyframes moverNeblina {
+      0% { transform: translate(-10%, -10%) scale(1); }
+      50% { transform: translate(10%, 10%) scale(1.1); }
+      100% { transform: translate(-10%, -10%) scale(1); }
+    }
+
+    header.navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.6); padding: 15px 60px;
+      z-index: 10; backdrop-filter: blur(8px);
+    }
+    .logo { font-size: 1.4em; font-weight: 700; }
+    nav a { color: #ddd; text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s; }
+    nav a:hover, nav a.active { color: #00bcd4; }
+
+    .contenido {
+      padding: 140px 5% 80px 5%;
+      position: relative; z-index: 2;
+      background: rgba(0,0,0,0.5);
+      min-height: 100vh;
+    }
+    .contenido h1 {
+      font-size: 2.8em; color: #00bcd4; text-align: center;
+      margin-bottom: 50px; padding-bottom: 15px;
+      border-bottom: 2px solid rgba(0,188,212,0.5);
+      max-width: 900px; margin: 0 auto 50px auto;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      background: rgba(0,0,0,0.85);
+      padding: 20px 0;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* --- ESTILOS DE LOS JUEGOS --- */
+    .juego {
+      background: rgba(0,188,212,0.12);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    .juego h2 {
+      color: #00e5ff;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .instrucciones {
+      font-size: 0.95em;
+      color: #cce;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Juego 1: Memoria */
+    .memory-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      justify-items: center;
+    }
+    .mem-card {
+      background: rgba(0,0,0,0.6);
+      width: 100%;
+      height: 90px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .4s;
+    }
+    .mem-card.flipped { transform: rotateY(180deg); }
+    .mem-front, .mem-back {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      backface-visibility: hidden;
+    }
+    .mem-front {
+      background: rgba(255,255,255,0.05);
+    }
+    .mem-back {
+      background: rgba(0,188,212,0.3);
+      transform: rotateY(180deg);
+      font-size: 1.8em;
+    }
+
+    /* Juego 2: Simon */
+    .simon-board {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      height: 300px;
+      margin-top: 10px;
+    }
+    .simon-pad {
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.1em;
+    }
+    .pad-0 { background: #ef4444; }
+    .pad-1 { background: #f59e0b; }
+    .pad-2 { background: #10b981; }
+    .pad-3 { background: #3b82f6; }
+    .pad-active { filter: brightness(1.4); transform: scale(1.05); }
+
+    button {
+      background: transparent;
+      border: 1px solid #00bcd4;
+      color: #00e5ff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+    button:hover { background: rgba(0,188,212,0.15); }
+
+    @media (max-width: 768px) {
+      .memory-board { grid-template-columns: repeat(3, 1fr); }
+      .mem-card { height: 80px; }
+      .simon-board { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="neblina"></div>
+
+  <header class="navbar">
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="recomendaciones.html">Recomendaciones</a>
+      <a href="plantillas.html">Plantillas</a>
+      <a href="consejos.html">Consejos</a>
+      <a href="juegos.html" class="active">Juegos</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+  <section class="contenido">
+    <h1>Juegos Educativos: Memoria y Concentración</h1>
+
+    <!-- JUEGO 1: MEMORIA -->
+    <div class="juego">
+      <h2>🧠 Juego 1 — Memoria (Parejas)</h2>
+      <p class="instrucciones">Haz clic en dos cartas para voltearlas. Encuentra todas las parejas en el menor número de intentos.</p>
+      <div>Intentos: <span id="mem-attempts">0</span> | Parejas encontradas: <span id="mem-matched">0</span>/8</div>
+      <div style="margin:10px 0;">
+        <button id="mem-start">Iniciar</button>
+        <button id="mem-reset">Reiniciar</button>
+      </div>
+      <div class="memory-board" id="memoryBoard"></div>
+    </div>
+
+    <!-- JUEGO 2: SIMON -->
+    <div class="juego">
+      <h2>🎯 Juego 2 — Concentración (Secuencia)</h2>
+      <p class="instrucciones">Observa la secuencia de colores y repítela tocando los cuadros. Cada ronda suma un paso. En modo estricto, un error reinicia el juego.</p>
+      <div>Ronda: <span id="simon-round">0</span> | Estado: <span id="simon-status">Esperando</span></div>
+      <div style="margin:10px 0;">
+        <button id="simon-start">Iniciar</button>
+        <button id="simon-strict">Modo Estricto: OFF</button>
+      </div>
+      <div class="simon-board" id="simonBoard">
+        <div class="simon-pad pad-0" data-pad="0">Rojo</div>
+        <div class="simon-pad pad-1" data-pad="1">Amarillo</div>
+        <div class="simon-pad pad-2" data-pad="2">Verde</div>
+        <div class="simon-pad pad-3" data-pad="3">Azul</div>
+      </div>
+    </div>
+
+<!-- JUEGO 3: NÚMERO OCULTO -->
+<div class="juego">
+  <h2>🔢 Juego 3 — Número oculto</h2>
+  <p class="instrucciones">Adivina el número del 1 al 100. El juego te indicará si tu intento es mayor o menor.</p>
+  <div>Intentos: <span id="number-attempts">0</span></div>
+  <div style="margin:10px 0;">
+    <input type="number" id="number-input" placeholder="Ingresa un número" min="1" max="100">
+    <button id="number-guess">Intentar</button>
+    <button id="number-reset">Reiniciar</button>
+  </div>
+  <div id="number-feedback" style="margin-top:10px; text-align:center;"></div>
+</div>
+
+<script>
+  /* ==== JUEGO 3: NÚMERO OCULTO ==== */
+  (function(){
+    const input = document.getElementById('number-input');
+    const guessBtn = document.getElementById('number-guess');
+    const resetBtn = document.getElementById('number-reset');
+    const feedback = document.getElementById('number-feedback');
+    const attemptsEl = document.getElementById('number-attempts');
+    let target, attempts;
+
+    function startNumberGame(){
+      target = Math.floor(Math.random()*100)+1;
+      attempts = 0;
+      attemptsEl.textContent = attempts;
+      feedback.textContent = '';
+      input.value = '';
+      input.disabled = false;
+      guessBtn.disabled = false;
+    }
+
+    function guessNumber(){
+      const val = parseInt(input.value);
+      if(isNaN(val) || val < 1 || val > 100){
+        feedback.textContent = 'Ingresa un número válido entre 1 y 100.';
+        return;
+      }
+      attempts++;
+      attemptsEl.textContent = attempts;
+      if(val === target){
+        feedback.textContent = `¡Felicidades! Adivinaste el número ${target} en ${attempts} intentos.`;
+        input.disabled = true;
+        guessBtn.disabled = true;
+      } else if(val < target){
+        feedback.textContent = 'El número es mayor.';
+      } else {
+        feedback.textContent = 'El número es menor.';
+      }
+    }
+
+    guessBtn.addEventListener('click', guessNumber);
+    resetBtn.addEventListener('click', startNumberGame);
+    startNumberGame();
+  })();
+</script>
+
+<!-- JUEGO 4: PALABRAS MEZCLADAS -->
+<div class="juego">
+  <h2>🔤 Juego 4 — Palabras mezcladas</h2>
+  <p class="instrucciones">Reordena las letras para formar la palabra correcta.</p>
+  <div>Intentos: <span id="word-attempts">0</span></div>
+  <div style="margin:10px 0; text-align:center;">
+    <div id="scrambled-word" style="font-size:1.5em; margin-bottom:10px;"></div>
+    <input type="text" id="word-input" placeholder="Escribe la palabra">
+    <button id="word-guess">Intentar</button>
+    <button id="word-reset">Reiniciar</button>
+  </div>
+  <div id="word-feedback" style="margin-top:10px; text-align:center;"></div>
+</div>
+
+<script>
+  /* ==== JUEGO 4: PALABRAS MEZCLADAS ==== */
+  (function(){
+    const words = ['facil','practica','valoracion','produccion','memoria','concentracion','estudio','aprendizaje','tecnica'];
+    const scrambledEl = document.getElementById('scrambled-word');
+    const input = document.getElementById('word-input');
+    const guessBtn = document.getElementById('word-guess');
+    const resetBtn = document.getElementById('word-reset');
+    const feedback = document.getElementById('word-feedback');
+    const attemptsEl = document.getElementById('word-attempts');
+
+    let currentWord = '';
+    let scrambled = '';
+    let attempts = 0;
+
+    function shuffleWord(word){
+      return word.split('').sort(()=>Math.random()-0.5).join('');
+    }
+
+    function startWordGame(){
+      attempts = 0;
+      attemptsEl.textContent = attempts;
+      feedback.textContent = '';
+      input.value = '';
+      currentWord = words[Math.floor(Math.random()*words.length)];
+      scrambled = shuffleWord(currentWord);
+      scrambledEl.textContent = scrambled;
+      input.disabled = false;
+      guessBtn.disabled = false;
+    }
+
+    function guessWord(){
+      const val = input.value.trim().toLowerCase();
+      attempts++;
+      attemptsEl.textContent = attempts;
+      if(val === currentWord){
+        feedback.textContent = `¡Correcto! La palabra era "${currentWord}" en ${attempts} intentos.`;
+        input.disabled = true;
+        guessBtn.disabled = true;
+      } else {
+        feedback.textContent = 'Intenta de nuevo.';
+      }
+    }
+
+    guessBtn.addEventListener('click', guessWord);
+    resetBtn.addEventListener('click', startWordGame);
+    startWordGame();
+  })();
+</script>
+
+
+  </section>
+
+  <footer>
+    © 2025 JAZIER-AST. Todo esfuerzo tiene su recompensa.
+  </footer>
+
+  <script>
+    /* ==== JUEGO DE MEMORIA ==== */
+    (function(){
+      const board = document.getElementById('memoryBoard');
+      const startBtn = document.getElementById('mem-start');
+      const resetBtn = document.getElementById('mem-reset');
+      const attemptsEl = document.getElementById('mem-attempts');
+      const matchedEl = document.getElementById('mem-matched');
+      const icons = ['🧠','⭐','🍎','🚀','🎈','🐢','🎯','🎵'];
+      let cards = [], first=null, second=null, lock=false, attempts=0, matched=0;
+
+      function createBoard(){
+        board.innerHTML='';
+        cards = shuffle([...icons,...icons]);
+        cards.forEach(val=>{
+          const c=document.createElement('div');
+          c.className='mem-card';
+          c.dataset.value=val;
+          c.innerHTML='<div class="mem-front"></div><div class="mem-back">'+val+'</div>';
+          c.addEventListener('click',()=>flip(c));
+          board.appendChild(c);
+        });
+        attempts=0; matched=0; updateStats();
+      }
+      function flip(card){
+        if(lock || card.classList.contains('flipped')) return;
+        card.classList.add('flipped');
+        if(!first){ first=card; return; }
+        second=card; lock=true; attempts++;
+        if(first.dataset.value===second.dataset.value){
+          matched++; first=null; second=null; lock=false; updateStats();
+          if(matched===icons.length) setTimeout(()=>alert('¡Felicidades! Completaste el juego.'),300);
+        }else{
+          updateStats();
+          setTimeout(()=>{
+            first.classList.remove('flipped');
+            second.classList.remove('flipped');
+            first=null; second=null; lock=false;
+          },900);
+        }
+      }
+      function updateStats(){ attemptsEl.textContent=attempts; matchedEl.textContent=matched; }
+      function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+      startBtn.onclick=createBoard; resetBtn.onclick=createBoard; createBoard();
+    })();
+
+    /* ==== JUEGO DE CONCENTRACIÓN (SIMON) ==== */
+    (function(){
+      const pads=Array.from(document.querySelectorAll('.simon-pad'));
+      const startBtn=document.getElementById('simon-start');
+      const strictBtn=document.getElementById('simon-strict');
+      const roundEl=document.getElementById('simon-round');
+      const statusEl=document.getElementById('simon-status');
+      let sequence=[], playerIndex=0, playing=false, strict=false;
+
+      function nextRound(){
+        sequence.push(Math.floor(Math.random()*4));
+        roundEl.textContent=sequence.length;
+        playSequence();
+      }
+      async function playSequence(){
+        playing=true; statusEl.textContent='Mostrando';
+        for(let i=0;i<sequence.length;i++){
+          await flash(pads[sequence[i]]);
+          await wait(300);
+        }
+        playing=false; playerIndex=0; statusEl.textContent='Tu turno';
+      }
+      function flash(pad){
+        return new Promise(res=>{
+          pad.classList.add('pad-active');
+          setTimeout(()=>pad.classList.remove('pad-active'),400);
+          setTimeout(res,500);
+        });
+      }
+      function wait(ms){return new Promise(r=>setTimeout(r,ms));}
+      pads.forEach(p=>p.addEventListener('click',()=>handleInput(Number(p.dataset.pad))));
+      function handleInput(n){
+        if(playing||!sequence.length)return;
+        flash(pads[n]);
+        if(sequence[playerIndex]===n){
+          playerIndex++;
+          if(playerIndex===sequence.length){statusEl.textContent='Bien';setTimeout(()=>nextRound(),700);}
+        }else{
+          statusEl.textContent='Error';
+          if(strict){sequence=[];roundEl.textContent=0;setTimeout(()=>startGame(),900);}
+          else{playerIndex=0;setTimeout(()=>playSequence(),900);}
+        }
+      }
+      function startGame(){sequence=[];playerIndex=0;statusEl.textContent='Preparando';nextRound();}
+      startBtn.onclick=startGame;
+      strictBtn.onclick=()=>{strict=!strict;strictBtn.textContent='Modo Estricto: '+(strict?'ON':'OFF');};
+    })();
+  </script>
+</body>
+</html>
+
+
+
