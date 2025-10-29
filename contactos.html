@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JAZIER-AST | Contactos</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: #000 url('fondo.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .neblina {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 70%);
+      animation: moverNeblina 20s infinite linear;
+      opacity: 0.35; z-index: 0; pointer-events: none;
+    }
+    @keyframes moverNeblina {
+      0% { transform: translate(-10%, -10%) scale(1); }
+      50% { transform: translate(10%, 10%) scale(1.1); }
+      100% { transform: translate(-10%, -10%) scale(1); }
+    }
+
+    header.navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.6); padding: 15px 60px;
+      z-index: 10; backdrop-filter: blur(8px);
+    }
+    .logo { font-size: 1.4em; font-weight: 700; }
+    nav a { color: #ddd; text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s; }
+    nav a:hover, nav a.active { color: #00bcd4; }
+
+    .contenido {
+      padding: 140px 5% 60px 5%;
+      position: relative; z-index: 2;
+      background: rgba(0,0,0,0.5);
+      min-height: 100vh;
+    }
+    .contenido h1 {
+      font-size: 2.8em; color: #00bcd4; text-align: center;
+      margin-bottom: 50px; padding-bottom: 15px;
+      border-bottom: 2px solid rgba(0,188,212,0.5);
+      max-width: 900px; margin: 0 auto 50px auto;
+    }
+
+    .contenedor-contacto {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .persona {
+      background: rgba(0,188,212,0.15);
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    .persona h2 { color: #00e5ff; margin-bottom: 10px; }
+    .persona .red { margin: 10px 0; font-size: 1.1em; }
+    .persona .red i { color: #00bcd4; margin-right: 8px; }
+    .persona a { color: #ddd; text-decoration: none; }
+    .persona a:hover { color: #00e5ff; }
+    .persona img {
+      width: 130px; height: 130px; border-radius: 50%;
+      border: 3px solid #00bcd4; object-fit: cover; margin-top: 20px;
+    }
+
+    /* Imágenes animadas */
+    .imagen-animada {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .imagen-animada img {
+      width: 120px; height: 120px; object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      animation: flotar 6s ease-in-out infinite;
+    }
+    .imagen-animada.derecha img { animation-delay: 1s; }
+
+    @keyframes flotar {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .calificacion {
+      margin: 40px auto 0 auto;
+      background: rgba(20,20,20,0.8);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 500px;
+    }
+    .calificacion h3 { color: #fff; margin-bottom: 15px; }
+    .estrellas { display: inline-block; user-select: none; }
+    .estrella {
+      font-size: 2.1rem;
+      color: #777;
+      cursor: pointer;
+      padding: 6px 8px;
+      display: inline-block;
+      transition: color 0.18s, transform 0.12s;
+      outline: none;
+    }
+    .estrella:hover { transform: translateY(-4px); }
+    .estrella.active { color: #00e5ff; transform: none; }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      background: rgba(0,0,0,0.85);
+      padding: 20px 0;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 3;
+    }
+
+    @media (max-width: 992px) {
+      .contenedor-contacto {
+        flex-direction: column;
+        align-items: center;
+      }
+      .imagen-animada {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="neblina"></div>
+
+  <header class="navbar">
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="recomendaciones.html">recomendaciones</a>
+      <a href="plantillas.html">Plantillas</a>
+      <a href="consejos.html">Consejos</a>
+      <a href="juegos.html">Juegos</a>
+      <a href="contactos.html" class="active">Contactos</a>
+    </nav>
+  </header>
+
+  <section class="contenido">
+    <h1>📱 Contactos del Equipo JAZIER-AST</h1>
+
+    <div class="contenedor-contacto">
+      <!-- Imagen izquierda -->
+      <div class="imagen-animada izquierda">
+        <img src="jaz.jpg" alt="Animación izquierda">
+      </div>
+
+      <!-- Persona 1 -->
+      <div class="persona">
+        <h2> Jazmín Rivera</h2>
+        <div class="red">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/59173212128" target="_blank">+591 73212128</a>
+        </div>
+        <div class="red">
+          <i class="fab fa-facebook"></i>
+          <a href="https://facebook.com/jazmin.rivera" target="_blank">Jazmín Rivera</a>
+        </div>
+        <div class="red">
+          <i class="fab fa-tiktok"></i>
+          <a href="https://www.tiktok.com/@jazmin_rivera" target="_blank">@jazmin_rivera</a>
+        </div>
+     
+      </div>
+
+      <!-- Persona 2 -->
+      <div class="persona">
+        <h2>Jeremy Roman</h2>
+        <div class="red">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/59171234567" target="_blank">+591 71234567</a>
+        </div>
+        <div class="red">
+          <i class="fab fa-facebook"></i>
+          <a href="https://facebook.com/jeremy.canqui" target="_blank">jeremy roman</a>
+        </div>
+        <div class="red">
+          <i class="fab fa-tiktok"></i>
+          <a href="https://www.tiktok.com/@roman_canqui" target="_blank">@canqui_muñoz</a>
+        </div>
+        
+      </div>
+
+      <!-- Imagen derecha -->
+      <div class="imagen-animada derecha">
+        <img src="jer1.jpg" alt="Animación derecha">
+      </div>
+    </div>
+
+    <!-- Cuadro de calificación -->
+    <div class="calificacion">
+      <h3>⭐ Califica nuestra página web</h3>
+      <div class="estrellas" id="estrellas">
+        <span class="estrella" data-valor="1">★</span>
+        <span class="estrella" data-valor="2">★</span>
+        <span class="estrella" data-valor="3">★</span>
+        <span class="estrella" data-valor="4">★</span>
+        <span class="estrella" data-valor="5">★</span>
+      </div>
+      <p id="mensaje-calificacion" style="margin-top:10px; color:#00e5ff;"></p>
+    </div>
+  </section>
+
+ 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cont = document.getElementById('estrellas');
+      const mensaje = document.getElementById('mensaje-calificacion');
+      const estrellas = cont.querySelectorAll('.estrella');
+
+      const guardado = localStorage.getItem('jazier_calificacion');
+      if (guardado) {
+        marcarEstrellas(parseInt(guardado));
+        mensaje.textContent = `Última calificación: ${guardado} estrella${guardado > 1 ? 's' : ''}. ¡Gracias!`;
+      }
+
+      cont.addEventListener('click', (e) => {
+        const target = e.target.closest('.estrella');
+        if (!target) return;
+        const valor = parseInt(target.dataset.valor);
+        marcarEstrellas(valor);
+        mensaje.textContent = `¡Gracias por calificarnos con ${valor} estrella${valor > 1 ? 's' : ''}!`;
+        localStorage.setItem('jazier_calificacion', valor);
+      });
+
+      function marcarEstrellas(valor) {
+        estrellas.forEach(s => {
+          const v = parseInt(s.dataset.valor);
+          s.classList.toggle('active', v <= valor);
+        });
+      }
+    });
+  </script>
+<footer>
+    © 2025 JAZIER-AST. Todo esfuerzo tiene su recompensa.
+  </footer>
+
+</body>
+</html>
+

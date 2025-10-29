@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JAZIER-AST | Consejos, Juegos y Evaluación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#00bcd4;
+      --accent-2:#00e5ff;
+      --glass: rgba(0,0,0,0.6);
+      --card: rgba(255,255,255,0.06);
+      --radius:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',sans-serif;
+      background: url('tecnicas.jpeg') center/cover fixed no-repeat;
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* HEADER */
+    header{
+      position:fixed;top:0;left:0;width:100%;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 40px;background:rgba(0,0,0,0.7);z-index:50;
+      backdrop-filter: blur(6px);
+    }
+    .logo{font-weight:700;color:var(--accent-2);font-size:1.4rem}
+    nav a{color:#ddd;text-decoration:none;margin:0 12px;font-weight:500;opacity:0.95}
+    nav a:hover{color:var(--accent)}
+    nav a.activo{color:var(--accent-2)}
+
+    /* MAIN */
+    main{
+      max-width:1200px;margin:120px auto 60px;padding:28px;border-radius:18px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.55));
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+    }
+
+    h1{color:var(--accent-2);text-align:center;margin-bottom:10px;text-shadow:0 0 8px rgba(0,220,255,0.08)}
+    .intro{color:#e9f6fb;text-align:center;margin-bottom:20px;font-size:0.98rem}
+
+    /* GRID sections */
+    .section{
+      margin:28px 0;padding:18px;border-radius:12px;background:var(--card);
+      border:1px solid rgba(0,188,212,0.06);
+    }
+
+    .section h2{
+      color:var(--accent);margin-bottom:12px;text-align:left;font-size:1.1rem;
+      display:flex;align-items:center;gap:10px;
+    }
+
+    .cards-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .22s ease, box-shadow .22s;
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+    .card h3{color:var(--accent);font-size:1rem}
+    .card p{font-size:0.94rem;color:#e9f6fb;line-height:1.45}
+    .card img{width:100%;border-radius:10px;object-fit:cover;height:140px}
+
+    /* media block for audio/video */
+    .media-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:center}
+    .media{
+      background:transparent;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+      width:320px;text-align:center;
+    }
+    .media video, .media audio{width:100%;border-radius:8px;outline:none}
+
+    /* JUEGOS styles */
+    .games-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:8px;
+    }
+    .game-box{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:220px;
+      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;
+    }
+    .game-title{color:var(--accent);font-weight:600}
+    .btn{background:var(--accent);color:#000;padding:9px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(0,188,212,0.2)}
+    .small{font-size:0.9rem;padding:7px 10px;border-radius:8px}
+
+    /* memory game */
+    .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:520px}
+    .mem-card{
+      background:linear-gradient(180deg,#ffffff06,#00000008);height:80px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden;
+      transition:transform .25s;
+    }
+    .mem-card.flipped{transform:rotateY(180deg);background:linear-gradient(180deg,#00bcd420,#00e5ff0f)}
+    .mem-front,.mem-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .mem-back{transform:rotateY(180deg)}
+
+    /* bubble pop */
+    .bubble-area{position:relative;width:100%;height:220px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#00000022,#00000011)}
+    .bubble{
+      position:absolute;border-radius:50%;background:linear-gradient(180deg,var(--accent),var(--accent-2));
+      opacity:0.95;cursor:pointer;box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      transform:scale(0.9);transition:transform .12s ease,opacity .2s;
+    }
+
+    /* puzzle */
+    .puzzle{
+      width:320px;height:320px;position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+      display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr)
+    }
+    .puz-tile{
+      border:1px solid rgba(255,255,255,0.03);background-size:cover;background-position:center;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#000;font-size:1.05rem;
+    }
+
+    /* EVALUATION */
+    .quiz{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .question{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px}
+    .question h4{color:var(--accent);margin-bottom:6px}
+    .options{display:flex;flex-direction:column;gap:8px}
+    .option{background:transparent;border:1px solid rgba(255,255,255,0.05);padding:10px;border-radius:8px;cursor:pointer}
+    .option:hover{background:rgba(255,255,255,0.02)}
+    .result{background:linear-gradient(180deg, rgba(0,188,212,0.12), rgba(0,188,212,0.06));padding:14px;border-radius:10px;border:1px solid rgba(0,188,212,0.08)}
+
+    /* footer */
+    footer{margin-top:28px;text-align:center;padding:14px;color:#cfdfe6;background:transparent}
+
+    @media(max-width:880px){
+      .memory-grid{grid-template-columns:repeat(3,1fr)}
+      .puzzle{width:260px;height:260px}
+    }
+    @media(max-width:520px){
+      header{padding:12px}
+      nav{display:none}
+      main{margin:100px 12px}
+      .memory-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="recomendaciones.html">Recomendaciones</a>
+      <a href="plantillas.html">Plantillas</a>
+      <a href="consejos.html" class="activo">Consejos</a>
+      <a href="juegos.html">Juegos</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Consejos, Juegos y Evaluación</h1>
+    <p class="intro">Recursos para estudiar mejor, relajarte y medir tu progreso. Usa los juegos para despejar y la evaluación al final para ver tu resultado — la página guarda tu última evaluación para comparar si mejoras.</p>
+
+    <!-- SECCIÓN CONSEJOS -->
+    <section class="section" id="tips">
+      <h2>🧠 Consejos para Exámenes y Estudio</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Organiza tu tiempo</h3>
+          <p>Planifica sesiones con objetivos concretos. Usa bloques de 25-50 minutos y descansos cortos (Pomodoro).</p>
+          <img src="organizacion.jpeg" alt="Organiza tu tiempo">
+        </div>
+        <div class="card">
+          <h3>Repasa activamente</h3>
+          <p>Haz preguntas, crea fichas y explica el contenido en voz alta. La memoria activa funciona mejor que releer.</p>
+          <img src="palabras.jpeg" alt="Repasar en voz alta">
+        </div>
+        <div class="card">
+          <h3>Duerme y aliméntate bien</h3>
+          <p>7-8 horas y snacks saludables (nueces, fruta) mantienen tu energía y concentración.</p>
+          <img src="duerme.jpeg" alt="Duerme">
+        </div>
+        <div class="card">
+          <h3>Práctica distribuida</h3>
+          <p>Mejor que estudiar todo de una vez: distribuye repeticiones en días distintos para reforzar memoria a largo plazo.</p>
+          <img src="examen.jpeg" alt="Practica">
+        </div>
+      </div>
+
+      <h2 style="margin-top:22px">🌿 Relajación y Manejo del Estrés</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Respiración consciente</h3>
+          <p>Inhala 4 s, mantiene 4 s, exhala 6 s. Repite 4-6 veces. Baja ritmo cardiaco y ansiedad.</p>
+          <img src="respirar.jpg" alt="Respiración">
+        </div>
+        <div class="card">
+          <h3>Micro-pausas activas</h3>
+          <p>Cada 45-60 minutos haz 3-5 minutos de estiramientos o caminata breve.</p>
+          <img src="pausas.jpg" alt="Estiramientos">
+        </div>
+        <div class="card">
+          <h3>Música y audios</h3>
+          <p>La música instrumental o pistas de concentración ayudan en sesiones largas.</p>
+          <img src="relaja.jpeg" alt="Música">
+        </div>
+        <div class="card">
+          <h3>Meditación breve</h3>
+          <p>5-10 minutos de meditación guiada reduce el estrés y mejora la atención.</p>
+          <img src="meditar.jpeg" alt="Meditar">
+        </div>
+      </div>
+
+      <!-- MEDIA -->
+      <div style="margin-top:20px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+        <div class="media">
+          <h4 style="margin-bottom:8px;color:var(--accent)">video de lluvia</h4>
+          <!-- Reemplaza videos/video_estudio.mp4 por tu ruta -->
+          <video controls src="mus.mp4" poster="imagenes/video-poster.jpg">Tu navegador no soporta video.</video>
+ <h4 style="margin-bottom:8px;color:var(--accent)">video de mar</h4>
+          <!-- Reemplaza videos/video_estudio.mp4 por tu ruta -->
+          <video controls src="musica.mp4" poster="imagenes/video-poster.jpg">Tu navegador no soporta video.</video>
+<h4 style="margin-bottom:8px;color:var(--accent)">video de lluvia</h4>
+          <!-- Reemplaza videos/video_estudio.mp4 por tu ruta -->
+          <video controls src="music.mp4" poster="imagenes/video-poster.jpg">Tu navegador no soporta video.</video>
+        </div>
+
+        <div class="media">
+          <h4 style="margin-bottom:8px;color:var(--accent)">Audio: Relajación (5 minutos)</h4>
+          <!-- Reemplaza audio/musica.mp3 por tu ruta -->
+          <audio controls src="musica.mp3"></audio>
+ <h4 style="margin-bottom:8px;color:var(--accent)">Audio: Relajación (2 minutos)</h4>
+          <!-- Reemplaza audio/music.mp3 por tu ruta -->
+          <audio controls src="music.mp3"></audio>
+ <h4 style="margin-bottom:8px;color:var(--accent)">Audio: Relajación (10 minutos)</h4>
+          <!-- Reemplaza audio/mus.mp3 por tu ruta -->
+          <audio controls src="mus.mp3"></audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN JUEGOS -->
+    <section class="section" id="games">
+      <h2>🎮 Juegos Relajantes y de Entrenamiento Cognitivo</h2>
+      <div class="games-grid">
+
+        <!-- MEMORY MATCH -->
+        <div class="game-box" id="game-memory">
+          <div class="game-title">Memoria Visual (Matching)</div>
+          <p style="font-size:0.95rem;color:#dff8ff;text-align:center">Encuentra las parejas lo más rápido posible. El juego baraja las cartas cada vez.</p>
+          <div class="memory-grid" id="memoryGrid"></div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn" id="memRestart">Reiniciar</button>
+            <div style="align-self:center;color:#cfeef6">Intentos: <span id="memTries">0</span></div>
+          </div>
+        </div>
+
+        <!-- BUBBLE POP -->
+        <div class="game-box" id="game-bubble">
+          <div class="game-title">Burbuja Pop</div>
+          <p style="font-size:0.95rem;color:#dff8ff;text-align:center">Haz pop en las burbujas que aparecen — relaja tu mente.</p>
+          <div class="bubble-area" id="bubbleArea"></div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn" id="bubbleStart">Generar Burbujas</button>
+            <button class="btn secondary" id="bubbleClear">Limpiar</button>
+            <div style="align-self:center;color:#cfeef6">Pops: <span id="bubbleCount">0</span></div>
+          </div>
+        </div>
+
+        <!-- PUZZLE -->
+        <div class="game-box" id="game-puzzle">
+          <div class="game-title">Rompecabezas 3x3</div>
+          <p style="font-size:0.95rem;color:#dff8ff;text-align:center">Arma la imagen deslizante. Ideal para concentración y paciencia.</p>
+          <div class="puzzle" id="puzzleBoard"></div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn" id="puzShuffle">Mezclar</button>
+            <button class="btn secondary" id="puzReset">Reset</button>
+            <div style="align-self:center;color:#cfeef6">Movimientos: <span id="puzMoves">0</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EVALUACIÓN -->
+    <section class="section" id="evaluation">
+      <h2>📋 Evaluación Final (Test de opción múltiple)</h2>
+      <p style="margin-bottom:12px">La evaluación te dará un puntaje. Tu último puntaje se guarda localmente para comparar mejoras.</p>
+
+      <div class="quiz" id="quizArea">
+        <!-- Preguntas generadas por JS -->
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn" id="submitQuiz">Enviar evaluación</button>
+        <button class="btn secondary" id="resetStored">Borrar último resultado</button>
+        <div style="align-self:center;color:#cfeef6">Último puntaje: <strong id="lastScore">--</strong></div>
+      </div>
+
+      <div id="quizResult" style="margin-top:14px"></div>
+    </section>
+
+  </main>
+
+  <footer>© 2025 JAZIER-AST | Recursos para estudiar y relajarse</footer>
+
+  <script>
+    /* -------------- Juegos: Memory Matching -------------- */
+    (function(){
+      const icons = [
+        '🧠','📘','🔬','✏️','🧪','📚','🕒','💡'
+      ]; // 8 pares -> 16 cartas
+      let deck = [];
+      let first=null, second=null, lock=false, tries=0, matches=0;
+      const grid = document.getElementById('memoryGrid');
+      const memTries = document.getElementById('memTries');
+      const memRestart = document.getElementById('memRestart');
+
+      function initDeck(){
+        deck = icons.concat(icons).map((v,i)=>({id:i+'-'+v,val:v,flipped:false}));
+        shuffle(deck);
+        renderDeck();
+      }
+      function shuffle(arr){
+        for(let i=arr.length-1;i>0;i--){
+          const j=Math.floor(Math.random()*(i+1));
+          [arr[i],arr[j]]=[arr[j],arr[i]];
+        }
+      }
+      function renderDeck(){
+        grid.innerHTML='';
+        tries=0;matches=0;first=second=null;lock=false;
+        memTries.textContent=tries;
+        deck.forEach((card,idx)=>{
+          const el=document.createElement('div');
+          el.className='mem-card';
+          el.dataset.idx=idx;
+          el.innerHTML = `<div class="mem-front"></div><div class="mem-back">${card.val}</div>`;
+          el.addEventListener('click', ()=> flipCard(idx, el));
+          grid.appendChild(el);
+        });
+      }
+      function flipCard(idx, el){
+        if(lock) return;
+        if(el.classList.contains('flipped')) return;
+        el.classList.add('flipped');
+        if(!first){ first={idx,el}; return; }
+        second={idx,el};
+        lock=true;
+        tries++;
+        memTries.textContent=tries;
+        if(deck[first.idx].val === deck[second.idx].val){
+          // match
+          matches++;
+          first.el.removeEventListener('click', ()=>{});
+          second.el.removeEventListener('click', ()=>{});
+          resetTurn();
+          if(matches === icons.length){ setTimeout(()=> alert('¡Felicidades! Completaste todas las parejas.'), 200); }
+        } else {
+          setTimeout(()=> {
+            first.el.classList.remove('flipped');
+            second.el.classList.remove('flipped');
+            resetTurn();
+          }, 700);
+        }
+      }
+      function resetTurn(){ first=null;second=null;lock=false; }
+      memRestart.addEventListener('click', ()=> initDeck());
+      initDeck();
+    })();
+
+    /* -------------- Juegos: Bubble Pop -------------- */
+    (function(){
+      const area = document.getElementById('bubbleArea');
+      const startBtn = document.getElementById('bubbleStart');
+      const clearBtn = document.getElementById('bubbleClear');
+      const countSpan = document.getElementById('bubbleCount');
+      let pops = 0;
+      let interval=null;
+
+      function createBubble(){
+        const b = document.createElement('div');
+        b.className='bubble';
+        const size = 40 + Math.random()*60;
+        b.style.width = b.style.height = size+'px';
+        b.style.left = Math.random()*(area.clientWidth - size) + 'px';
+        b.style.top = area.clientHeight + 'px';
+        b.style.opacity = 0.95;
+        area.appendChild(b);
+        // animate rising
+        const rise = 3000 + Math.random()*3000;
+        b.animate([{transform:'translateY(0)'},{transform:`translateY(-${area.clientHeight + 100}px)`}], {duration:rise,iterations:1,easing:'linear'});
+        // set pop handler
+        b.addEventListener('click', ()=>{
+          pops++;
+          countSpan.textContent = pops;
+          b.style.transform = 'scale(1.25)';
+          b.style.opacity = '0';
+          setTimeout(()=> b.remove(), 180);
+        });
+        // remove after time if not clicked
+        setTimeout(()=> { if(b.parentElement) b.remove(); }, 6000);
+      }
+
+      startBtn.addEventListener('click', ()=>{
+        if(interval) clearInterval(interval);
+        pops = 0; countSpan.textContent=0;
+        interval = setInterval(createBubble, 700);
+      });
+      clearBtn.addEventListener('click', ()=>{
+        clearInterval(interval); interval=null;
+        Array.from(area.querySelectorAll('.bubble')).forEach(b=>b.remove());
+      });
+
+      // responsive: when window resizes, remove bubbles (to avoid overflow)
+      window.addEventListener('resize', ()=> {
+        Array.from(area.querySelectorAll('.bubble')).forEach(b=>b.remove());
+      });
+    })();
+
+    /* -------------- Juegos: Sliding Puzzle 3x3 -------------- */
+    (function(){
+      const board = document.getElementById('puzzleBoard');
+      const shuffleBtn = document.getElementById('puzShuffle');
+      const resetBtn = document.getElementById('puzReset');
+      const movesSpan = document.getElementById('puzMoves');
+      let tiles = [], emptyIdx = 8, moves=0;
+      // choose image or color: we'll use a background image - replace 'consejos/puzzle.jpg' with your image
+      const img = 'consejos/eee.jpg';
+
+      function initPuzzle(){
+        tiles = [];
+        for(let i=0;i<8;i++){
+          tiles.push(i);
+        }
+        tiles.push(null); // empty
+        emptyIdx = 8;
+        moves=0; movesSpan.textContent=moves;
+        render();
+      }
+      function render(){
+        board.innerHTML='';
+        for(let i=0;i<9;i++){
+          const tile = document.createElement('div');
+          tile.className='puz-tile';
+          if(tiles[i] === null){
+            tile.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))';
+            tile.textContent='';
+          } else {
+            // Create slice using background-position
+            const posX = (tiles[i] % 3) * 33.333;
+            const posY = Math.floor(tiles[i]/3) * 33.333;
+            tile.style.backgroundImage = `url(${img})`;
+            tile.style.backgroundSize = '300% 300%';
+            tile.style.backgroundPosition = `${posX}% ${posY}%`;
+            tile.textContent = '';
+          }
+          tile.addEventListener('click', ()=> tryMove(i));
+          board.appendChild(tile);
+        }
+      }
+      function tryMove(i){
+        const adj = [i-1, i+1, i-3, i+3];
+        if(adj.includes(emptyIdx) && Math.abs(Math.floor(i/3)-Math.floor(emptyIdx/3))+Math.abs((i%3)-(emptyIdx%3))===1){
+          // swap
+          [tiles[i], tiles[emptyIdx]] = [tiles[emptyIdx], tiles[i]];
+          emptyIdx = i;
+          moves++; movesSpan.textContent=moves;
+          render();
+          if(checkSolved()) setTimeout(()=> alert('¡Rompecabezas completado!'),200);
+        }
+      }
+      function shuffle(){
+        // simple shuffle by making random valid moves
+        for(let k=0;k<120;k++){
+          const possible = [];
+          const i = emptyIdx;
+          const r = [i-1,i+1,i-3,i+3];
+          r.forEach(n=> {
+            if(n>=0 && n<9 && (Math.abs(Math.floor(n/3)-Math.floor(i/3))+Math.abs((n%3)-(i%3))===1)) possible.push(n);
+          });
+          const pick = possible[Math.floor(Math.random()*possible.length)];
+          [tiles[pick], tiles[emptyIdx]]=[tiles[emptyIdx], tiles[pick]];
+          emptyIdx = pick;
+        }
+        moves=0; movesSpan.textContent=moves;
+        render();
+      }
+      function checkSolved(){ // true if tiles in order 0..7,null
+        for(let i=0;i<8;i++) if(tiles[i] !== i) return false;
+        return tiles[8]===null;
+      }
+
+      shuffleBtn.addEventListener('click', ()=> shuffle());
+      resetBtn.addEventListener('click', ()=> initPuzzle());
+      initPuzzle();
+    })();
+
+    /* -------------- EVALUATION (Quiz) -------------- */
+    (function(){
+      // Sample questions - puedes editar / ampliar
+      const questions = [
+        {
+          q: "¿Cuál es la técnica que divide el estudio en intervalos (por ejemplo 25 min) y descansos cortos?",
+          options: ["Mapa mental","Pomodoro","Feynman","Cornell"],
+          answer: 1
+        },
+        {
+          q: "¿Qué es mejor para memorizar a largo plazo?",
+          options: ["Releer una vez","Práctica distribuida","Estudiar toda la noche","Copiar apuntes palabra por palabra"],
+          answer: 1
+        },
+        {
+          q: "¿Cuál de estas acciones ayuda a la concentración antes de un examen?",
+          options: ["Tomar una siesta corta","Comer comida muy pesada","No dormir en días previos","Tomar mucha cafeína"],
+          answer: 0
+        },
+        {
+          q: "¿Cuál es una buena práctica de relajación rápida antes de una prueba?",
+          options: ["Respiración profunda","Forzar estudiar más","Mirar redes sociales 10 min","Saltarse el desayuno"],
+          answer: 0
+        },
+        {
+          q: "¿Cuál técnica fomenta explicar en voz alta para comprobar comprensión?",
+          options: ["Técnica Feynman","Mapa conceptual","Pomodoro","Horario semanal"],
+          answer: 0
+        }
+      ];
+
+      const quizArea = document.getElementById('quizArea');
+      const submitBtn = document.getElementById('submitQuiz');
+      const lastScoreEl = document.getElementById('lastScore');
+      const quizResult = document.getElementById('quizResult');
+      const resetStored = document.getElementById('resetStored');
+
+      // render questions
+      function renderQuiz(){
+        quizArea.innerHTML = '';
+        questions.forEach((item, idx) => {
+          const qDiv = document.createElement('div');
+          qDiv.className='question';
+          qDiv.innerHTML = `<h4>Pregunta ${idx+1}. ${item.q}</h4>`;
+          const opts = document.createElement('div'); opts.className='options';
+          item.options.forEach((opt, oi) => {
+            const button = document.createElement('button');
+            button.className='option';
+            button.type='button';
+            button.innerText = opt;
+            button.dataset.q=idx; button.dataset.o=oi;
+            button.addEventListener('click', onSelect);
+            opts.appendChild(button);
+          });
+          qDiv.appendChild(opts);
+          quizArea.appendChild(qDiv);
+        });
+      }
+      // answer tracking
+      const answers = new Array(questions.length).fill(null);
+
+      function onSelect(e){
+        const btn = e.currentTarget;
+        const q = Number(btn.dataset.q);
+        const o = Number(btn.dataset.o);
+        answers[q]=o;
+        // visual feedback: mark selected in that question
+        const parent = btn.parentElement;
+        Array.from(parent.children).forEach(b=> b.style.background='transparent');
+        btn.style.background='linear-gradient(90deg, rgba(0,188,212,0.2), rgba(0,229,255,0.08))';
+      }
+
+      // load last score
+      function loadLast(){
+        const last = localStorage.getItem('jazier_last_score');
+        if(last !== null){ lastScoreEl.innerText = last + '%'; }
+        else lastScoreEl.innerText = '--';
+      }
+
+      submitBtn.addEventListener('click', ()=>{
+        // ensure all answered
+        if(answers.some(a => a === null)){
+          if(!confirm('No contestaste todas las preguntas. ¿Deseas enviar de todos modos?')) return;
+        }
+        let score = 0;
+        questions.forEach((q, i) => { if(answers[i] === q.answer) score++; });
+        const percent = Math.round((score / questions.length) * 100);
+        // fetch last stored
+        const prevRaw = localStorage.getItem('jazier_last_score');
+        const prev = prevRaw !== null ? Number(prevRaw) : null;
+        // store this result
+        localStorage.setItem('jazier_last_score', percent);
+        loadLast();
+        // build feedback
+        let feedback = `<div class="result"><strong>Resultado: ${percent}% (${score}/${questions.length})</strong><br/>`;
+        if(percent >= 80) feedback += '<p>Excelente trabajo — parece que aplicas buenas técnicas de estudio.</p>';
+        else if(percent >= 60) feedback += '<p>Bien — estás en buen camino, refuerza la práctica activa y el descanso.</p>';
+        else feedback += '<p>Necesitas reforzar tus técnicas de estudio: organiza mejor tus sesiones, usa reposo y práctica distribuida.</p>';
+        if(prev !== null){
+          if(percent > prev) feedback += `<p>Comparación: Mejoraste respecto a tu último intento (${prev}%). ¡Buen avance!</p>`;
+          else if(percent < prev) feedback += `<p>Comparación: Tu último puntaje fue ${prev}%. Intenta analizar qué cambiaste y vuelve a intentarlo.</p>`;
+          else feedback += `<p>Comparación: Mismo puntaje que la última vez (${prev}%). Puedes mantener la rutina o intentar nuevas estrategias.</p>`;
+        } else {
+          feedback += '<p>Comparación: No hay resultado anterior guardado. Este resultado se guardará para la próxima vez.</p>';
+        }
+        feedback += '</div>';
+        quizResult.innerHTML = feedback;
+        // scroll to result
+        quizResult.scrollIntoView({behavior:'smooth',block:'center'});
+      });
+
+      resetStored.addEventListener('click', ()=>{
+        localStorage.removeItem('jazier_last_score');
+        loadLast();
+        alert('Último resultado borrado.');
+      });
+
+      renderQuiz();
+      loadLast();
+    })();
+
+    /* -------------- Extras: pequeñas utilidades UX -------------- */
+    // evita que clicks en los botones de los juegos cuenten como clicks globales para el click-game anterior
+    document.addEventListener('click', (e)=> {
+      // utilización ligera, no molesta
+    });
+  </script>
+</body>
+</html>
