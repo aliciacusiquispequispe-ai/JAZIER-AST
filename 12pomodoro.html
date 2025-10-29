@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro - JAZIER-AST</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0; font-family:'Roboto', sans-serif;
+  background: url('tecnicas.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color:#fff;
+}
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  background: rgba(0,0,0,0.8); padding:15px 30px;
+}
+header .logo { font-size:1.8em; font-weight:bold; }
+nav a { color:#fff; margin-left:20px; text-decoration:none; font-weight:bold; }
+nav a.activo { color:#00ffcc; }
+main { max-width:800px; margin:40px auto; background: rgba(0,0,30,0.85); padding:30px; border-radius:15px; box-shadow:0 8px 24px rgba(0,0,0,0.6); text-align:center; }
+h1 { color:#00e5ff; }
+h2 { color:#99ffcc; margin-top:20px; }
+button { padding:10px 20px; margin:5px; border:none; border-radius:5px; background:#00e5ff; color:#000; cursor:pointer; font-size:1em; }
+#timer { font-size:3em; margin:20px 0; }
+.sessions { margin-top:20px; }
+.instructions { text-align:left; margin-top:15px; }
+footer { text-align:center; padding:15px 0; background: rgba(0,0,0,0.8); color:#fff; margin-top:30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">JAZIER-AST</div>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="tecnicas.html" class="activo">Técnicas</a>
+    <a href="plantillas.html">Plantillas</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<br>
+<fieldset>
+        <section id="pomodoro" class="tecnica">
+            <h3>10. Método Pomodoro (25/5)</h3>
+<font color="#FFFFFF">
+            <p>El método Pomodoro es una técnica de gestión del tiempo que divide el trabajo en intervalos de 25 minutos (llamados "pomodoros"), seguidos de breves descansos de 5 minutos. Tras completar cuatro "pomodoros", se toma un descanso más largo de 15 a 30 minutos. Su objetivo es mejorar la concentración y la productividad al trabajar intensamente en una sola tarea durante un período fijo, minimizando las distracciones.</p>
+            </font>
+
+<main>
+<h1>Juego Pomodoro</h1>
+<p>Organiza tu tiempo de estudio usando intervalos de trabajo y descanso para mejorar la concentración y la productividad.</p>
+
+<div class="instructions">
+  <h2>Instrucciones:</h2>
+  <ul>
+    <li>El temporizador iniciará un período de estudio (25 minutos por defecto).</li>
+    <li>Al terminar, habrá un descanso corto (5 minutos).</li>
+    <li>Puedes pausar o reiniciar el temporizador en cualquier momento.</li>
+    <li>Completa varias sesiones Pomodoro para mejorar tu concentración.</li>
+  </ul>
+</div>
+
+<div id="timer">25:00</div>
+<button onclick="startTimer()">Iniciar</button>
+<button onclick="pauseTimer()">Pausar</button>
+<button onclick="resetTimer()">Reiniciar</button>
+
+<div class="sessions">
+  <h2>Sesiones completadas: <span id="sessionCount">0</span></h2>
+</div>
+
+</main>
+
+<footer>&copy; 2025 JAZIER-AST | Todos los derechos reservados</footer>
+
+<script>
+let workTime = 25*60; // 25 minutos
+let breakTime = 5*60; // 5 minutos
+let timeLeft = workTime;
+let timerInterval = null;
+let onBreak = false;
+let sessionCount = 0;
+
+const timerDisplay = document.getElementById('timer');
+const sessionCounter = document.getElementById('sessionCount');
+
+function formatTime(seconds){
+  const m = Math.floor(seconds/60).toString().padStart(2,'0');
+  const s = (seconds%60).toString().padStart(2,'0');
+  return `${m}:${s}`;
+}
+
+function updateDisplay(){
+  timerDisplay.textContent = formatTime(timeLeft);
+}
+
+function startTimer(){
+  if(timerInterval) return; // Ya está corriendo
+  timerInterval = setInterval(()=>{
+    timeLeft--;
+    updateDisplay();
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      timerInterval=null;
+      if(!onBreak){
+        alert("¡Tiempo de descanso! 5 minutos");
+        onBreak=true;
+        timeLeft = breakTime;
+        startTimer();
+        sessionCount++;
+        sessionCounter.textContent=sessionCount;
+      } else {
+        alert("Descanso terminado. ¡Vuelve al estudio!");
+        onBreak=false;
+        timeLeft = workTime;
+        updateDisplay();
+      }
+    }
+  },1000);
+}
+
+function pauseTimer(){
+  if(timerInterval){
+    clearInterval(timerInterval);
+    timerInterval=null;
+  }
+}
+
+function resetTimer(){
+  pauseTimer();
+  timeLeft = onBreak ? breakTime : workTime;
+  updateDisplay();
+}
+updateDisplay();
+</script>
+
+</body>
+</html>
+
+
+
+    

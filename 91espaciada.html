@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Leitner - JAZIER-AST</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { margin:0; font-family:'Roboto', sans-serif; background:url('tecnicas.jpeg') no-repeat center center fixed; background-size:cover; color:#fff; }
+header { display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.8); padding:15px 30px;}
+header .logo { font-size:1.8em; font-weight:bold; }
+nav a { color:#fff; margin-left:20px; text-decoration:none; font-weight:bold; }
+nav a.activo { color:#00ffcc; }
+main { max-width:1200px; margin:40px auto; background:rgba(0,0,30,0.85); padding:30px; border-radius:15px; box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+h1,h2 { text-align:center; }
+h1 { color:#00e5ff; }
+h2 { color:#99ffcc; margin-top:20px;}
+fieldset { margin-bottom:20px; }
+input, textarea { width:100%; padding:8px; margin:5px 0; border-radius:5px; border:none; }
+button { padding:8px 15px; margin:5px; border:none; border-radius:5px; background:#00e5ff; color:#000; cursor:pointer; }
+.cajas { display:flex; justify-content:space-between; flex-wrap:wrap; margin-top:20px; }
+.caja { width:18%; min-height:200px; background:rgba(255,255,255,0.1); border-radius:10px; padding:10px; margin-bottom:20px; }
+.caja h3 { text-align:center; color:#fff; margin-bottom:10px; }
+.flashcard { width:100%; height:120px; margin-bottom:10px; background:rgba(255,255,255,0.2); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1em; cursor:pointer; position:relative; transform-style: preserve-3d; transition: transform 0.6s; }
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard .front, .flashcard .back { position:absolute; width:100%; height:100%; backface-visibility:hidden; display:flex; align-items:center; justify-content:center; padding:10px; text-align:center; flex-direction:column; }
+.flashcard .back { transform: rotateY(180deg); }
+footer { text-align: center; padding: 15px 0; background: rgba(0,0,0,0.8); color: #fff; margin-top: 30px; }
+fieldset { margin-bottom: 30px; }
+.informacion-detalle { display:none; margin-top: 15px; text-align:center; }
+input, textarea { width: 100%; padding:8px; margin:5px 0; border-radius:5px; border:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">JAZIER-AST</div>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="tecnicas.html" class="activo">Técnicas</a>
+    <a href="9espaciada.html" class="activo">Técnicas de repeticion espaciada</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<main>
+<h1>Juego Método Leitner</h1>
+<p style="text-align:center;">Crea tus tarjetas, repásalas y mejora tu memoria usando la técnica de Leitner.</p>
+
+<fieldset>
+  <legend>Crear nueva flashcard</legend>
+  <input type="text" id="nuevaPregunta" placeholder="Pregunta">
+  <textarea id="nuevaRespuesta" placeholder="Respuesta"></textarea>
+  <button onclick="agregarFlashcard()">Agregar tarjeta</button>
+</fieldset>
+
+<h2>Cajas del método Leitner</h2>
+<div class="cajas">
+  <div class="caja" id="caja1"><h3>Caja 1 (Diaria)</h3></div>
+  <div class="caja" id="caja2"><h3>Caja 2 (Cada 2 días)</h3></div>
+  <div class="caja" id="caja3"><h3>Caja 3 (Cada 4 días)</h3></div>
+  <div class="caja" id="caja4"><h3>Caja 4 (Cada 7 días)</h3></div>
+  <div class="caja" id="caja5"><h3>Caja 5 (Dominadas)</h3></div>
+</div>
+</main>
+<center>
+<font color="#00FFFF">
+ <button onclick="mostrarInformacion('info-Repeticion Espaciada')"><a href="9espaciada.html" target="_blank"><font color="#111"><h3>VOLVER</h3></font></a></button>
+</font>
+
+</center>
+<footer>
+  <div>© 2025 JAZIER-AST | Créditos: Desarrollo por JAZIER-AST</div>
+  <div>Contacto: Teléfono 73212128 | Email: contacto@jazierast.com</div>
+</footer>
+
+<script>
+// Variables
+let cajas = [ [], [], [], [], [] ]; 
+let diaActual = 1;
+
+// Crear tarjeta
+function agregarFlashcard(){
+  const pregunta = document.getElementById('nuevaPregunta').value.trim();
+  const respuesta = document.getElementById('nuevaRespuesta').value.trim();
+  if(pregunta && respuesta){
+    const tarjeta = {pregunta, respuesta, nivel:0, proximoRepaso:diaActual};
+    cajas[0].push(tarjeta);
+    document.getElementById('nuevaPregunta').value = '';
+    document.getElementById('nuevaRespuesta').value = '';
+    mostrarCajas();
+  } else alert("Debes ingresar pregunta y respuesta.");
+}
+
+// Mostrar cajas
+function mostrarCajas(){
+  cajas.forEach((caja,index)=>{
+    const contenedor = document.getElementById('caja'+(index+1));
+    contenedor.innerHTML = `<h3>Caja ${index+1}${[' (Diaria)',' (Cada 2 días)',' (Cada 4 días)',' (Cada 7 días)',' (Dominadas)'][index]}</h3>`;
+    caja.forEach((tarjeta)=>{
+      if(diaActual >= tarjeta.proximoRepaso || tarjeta.nivel==4){
+        const div = document.createElement('div');
+        div.className = 'flashcard';
+        div.innerHTML = `<div class="front">${tarjeta.pregunta}</div>
+                         <div class="back">
+                           ${tarjeta.respuesta}
+                           <div style="margin-top:5px;">
+                             <button onclick="recordado(event, this)">Recordé ✅</button>
+                             <button onclick="repasar(event, this)">Volver 🔄</button>
+                             <button onclick="eliminar(event, this)">Eliminar 🗑️</button>
+                           </div>
+                         </div>`;
+        div.addEventListener('click', ()=> div.classList.toggle('flipped'));
+        // Guardar referencia de la tarjeta en el div
+        div.tarjetaObj = tarjeta;
+        contenedor.appendChild(div);
+      }
+    });
+  });
+}
+
+// Funciones de control usando referencia directa
+function recordado(event, btn){
+  event.stopPropagation();
+  const tarjeta = btn.closest('.flashcard').tarjetaObj;
+  if(tarjeta.nivel < 4) tarjeta.nivel++;
+  tarjeta.proximoRepaso = diaActual + [1,2,4,7,0][tarjeta.nivel];
+  if(tarjeta.nivel==4 && !cajas[4].includes(tarjeta)){
+    cajas[4].push(tarjeta);
+    cajas.forEach(c => { const idx = c.indexOf(tarjeta); if(idx>-1) c.splice(idx,1); });
+  }
+  mostrarCajas();
+}
+
+function repasar(event, btn){
+  event.stopPropagation();
+  const tarjeta = btn.closest('.flashcard').tarjetaObj;
+  tarjeta.nivel = 0;
+  tarjeta.proximoRepaso = diaActual +1;
+  if(!cajas[0].includes(tarjeta)) cajas[0].push(tarjeta);
+  cajas.forEach(c => { const idx = c.indexOf(tarjeta); if(idx>-1) c.splice(idx,1); });
+  mostrarCajas();
+}
+
+function eliminar(event, btn){
+  event.stopPropagation();
+  const tarjeta = btn.closest('.flashcard').tarjetaObj;
+  cajas.forEach(c => { const idx = c.indexOf(tarjeta); if(idx>-1) c.splice(idx,1); });
+  mostrarCajas();
+}
+
+// Simular días
+setInterval(()=>{ diaActual++; mostrarCajas(); },30000);
+
+mostrarCajas();
+</script>
+
+</body>
+</html>
