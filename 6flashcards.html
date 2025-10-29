@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAZIER-AST: Juego de Flashcards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ---------- ESTILO GENERAL ---------- */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('ficha.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.8);
+      padding: 15px 30px;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #00e5ff;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.activo {
+      color: #00ffcc;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00e5ff;
+      margin-bottom: 10px;
+    }
+
+    .instructions {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* ---------- SECCIONES ---------- */
+    .section-title {
+      text-align: center;
+      font-size: 1.4em;
+      color: #ffffff;
+      margin: 45px 0 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- FLASHCARDS ---------- */
+    .flashcards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 35px; /* Espaciado más equilibrado */
+      padding: 20px 0;
+    }
+
+    .card {
+      background: transparent;
+      width: 250px;
+      height: 180px;
+      perspective: 1000px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .inner-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card.flipped .inner-card {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.05em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    .front {
+      background: rgba(0, 230, 255, 0.9);
+      color: #000;
+    }
+
+    .back {
+      background: rgba(255,255,255,0.95);
+      color: #000;
+      transform: rotateY(180deg);
+    }
+
+    /* ---------- BOTONES ---------- */
+    .buttons {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    button {
+      background: #00e5ff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px;
+      color: #000;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #00bcd4;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00e5ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width:900px){
+      header { flex-direction: column; gap: 10px; }
+      main { width: 90%; padding: 20px; }
+      .flashcards-container { gap: 20px; }
+      .card { width: 200px; height: 160px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html" >Técnicas</a>
+      <a href="6flashcards.html"class="activo">Flash Cards</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+<br>
+<fieldset>
+       <section id="flash cards" class="tecnica">
+<center>
+            <h1>6. Flash Cards</h1>
+</center>
+<font color="#FFFFFF">
+
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+  <img src="fichas.jpeg" alt="Ejemplo" width="600" height="300" alt="flash cards"><style="width:150px; height:auto; border-radius:8px;">
+  <p style="text-align: justify;">
+<BR>
+    <p style="text-align: justify;">
+La técnica de estudio Feynman fue desarrollada por Richard Feynman, un físico teórico estadounidense ganador del Premio Nobel y uno de los mayores divulgadores del siglo XX.</p>
+
+  <p style="text-align: justify;">El cerebro humano retiene mejor la información cuando se enfrenta al reto de recordarla antes de recibir la respuesta. Cada vez que intentamos recuperar un dato, reforzamos la conexión neuronal que lo almacena. Por eso, las flashcards para estudiar son mucho más efectivas que la simple lectura: en lugar de absorber pasivamente la información, se participa activamente en el proceso de memorización.</p>
+  </p>
+<p style="text-align: justify;">Los estudiantes que utilizan tarjetas de estudio pueden mejorar su rendimiento académico significativamente en comparación con aquellos que solo leen sus apuntes. Además, las flashcards online han hecho que esta técnica sea aún más accesible, permitiendo estudiar desde cualquier dispositivo sin necesidad de cargar con montones de fichas físicas.</p>
+</div>
+<center>
+<h1>QUE SON?</h1>
+<fieldset>
+ <p>
+Las flashcards son tarjetas, físicas o digitales, que se utilizan como técnica de estudio para memorizar información de manera rápida y efectiva
+</P>
+<img src="anre.png" alt="Ejemplo" width="800" height="300" alt="flash cards"><style="width:150px; height:auto; border-radius:8px;">
+</fieldset>
+    </center>
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+<br><font color="#00FFFF"><h1>COMO SE USA</h1></font>
+	<font color="#00FFFF"><p>Dos caras:</font>
+<br> Una cara presenta una pregunta, término, imagen o concepto, mientras que la otra contiene la respuesta, definición o explicación. </p>
+	<br>
+<font color="#00FFFF"><p>Técnica de memorización:</font> 
+<br> Al obligar al estudiante a recordar activamente la información y autoevaluarse, se fortalece la memoria a largo plazo. </p>
+	<br><font color="#00FFFF"><p>Síntesis de información::</font>
+<br> Son excelentes para sintetizar ideas clave, lo que simplifica y organiza el material de estudio.  </p>
+<br><font color="#00FFFF"><p>Versatilidad: </font>
+<br> Sirven para memorizar una gran variedad de contenidos en cualquier materia, desde idiomas hasta ciencias.  </p>
+<br><font color="#00FFFF"><p>Personalización:</font>
+<br>Se pueden crear de forma personalizada con tus propias palabras, dibujos y colores para que se adapten mejor a tu estilo de aprendizaje.  </p>
+</p>
+</div>
+
+
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+	<center>
+ <h1>PRUEBA LA TECNICA DE LAS FLASH CARDS CON JAZIER AST</h1>
+
+</center>
+
+            </div>
+   </section>
+</font>
+</fieldset>
+<br>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <h1>🎓 Juego Educativo: Flashcards</h1>
+    <div class="instructions">
+      <h2>📘 Instrucciones:</h2>
+      <p>Este juego te ayudará a **aprender y repasar las técnicas de estudio** con tarjetas interactivas.</p>
+      <ul>
+        <li>Haz clic en una tarjeta para ver la respuesta en el reverso.</li>
+        <li>Intenta recordar antes de girarla.</li>
+        <li>Puedes presionar <b>“Reiniciar”</b> para volver al inicio.</li>
+      </ul>
+    </div>
+
+    <!-- SECCIÓN 1 -->
+    <div class="section-title">🧠 Concepto general</div>
+    <div class="flashcards-container">
+      <div class="card"><div class="inner-card">
+        <div class="front">¿Qué son las técnicas de estudio?</div>
+        <div class="back">Son estrategias que facilitan el aprendizaje, la comprensión y la organización del conocimiento.</div>
+      </div></div>
+    </div>
+
+    <!-- SECCIÓN 2 -->
+    <div class="section-title">📝 Técnicas principales</div>
+    <div class="flashcards-container">
+      <div class="card"><div class="inner-card">
+        <div class="front">Subrayado</div>
+        <div class="back">Destaca las ideas clave para identificar la información más importante.</div>
+      </div></div>
+
+      <div class="card"><div class="inner-card">
+        <div class="front">Resumen</div>
+        <div class="back">Sintetiza las ideas esenciales de un texto con tus propias palabras.</div>
+      </div></div>
+
+      <div class="card"><div class="inner-card">
+        <div class="front">Método Cornell</div>
+        <div class="back">Divide la hoja para organizar notas, palabras clave y un resumen final.</div>
+      </div></div>
+    </div>
+
+    <!-- SECCIÓN 3 -->
+    <div class="section-title">📊 Organizadores gráficos</div>
+    <div class="flashcards-container">
+      <div class="card"><div class="inner-card">
+        <div class="front">Cuadro comparativo</div>
+        <div class="back">Analiza similitudes y diferencias entre conceptos o temas.</div>
+      </div></div>
+
+      <div class="card"><div class="inner-card">
+        <div class="front">Cuadro sinóptico</div>
+        <div class="back">Organiza la información de lo general a lo específico visualmente.</div>
+      </div></div>
+    </div>
+
+    <!-- SECCIÓN 4 -->
+    <div class="section-title">🎮 Estrategias complementarias</div>
+    <div class="flashcards-container">
+      <div class="card"><div class="inner-card">
+        <div class="front">Flashcards</div>
+        <div class="back">Tarjetas para repasar conceptos y fortalecer la memoria.</div>
+      </div></div>
+
+      <div class="card"><div class="inner-card">
+        <div class="front">Mapas mentales</div>
+        <div class="back">Representan ideas con colores y ramas que fomentan la creatividad.</div>
+      </div></div>
+    </div>
+
+    <div class="buttons">
+      <button id="resetBtn">Reiniciar</button>
+    </div>
+  </main>
+
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const resetBtn = document.getElementById('resetBtn');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      cards.forEach(card => card.classList.remove('flipped'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width, initial-scale=1" />
+  <title>Juego de Flashcards (Original Sin Fondo)</title>
+  <style>
+    /* Mantener el juego funcional, solo se elimina fondo */
+    body{font-family:Inter,system-ui,sans-serif;margin:12px;background:;color:#111}
+    .app{max-width:900px;margin:0 auto;display:blue;blue-template-columns:1fr 380px;gap:16px}
+
+    .study{border:1px solid #ccc;padding:16px;border-radius:8px}
+    .card-stage{height:260px;display:flex;align-items:center;justify-content:center;perspective:1000px}
+
+    .flashcard{width:100%;max-width:520px;height:220px;position:relative;transform-style:preserve-3d;transition:transform 0.6s;cursor:pointer;}
+    .flashcard.flipped{transform:rotateY(180deg)}
+
+    .card-content{position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;font-size:20px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.1);background:#00ffff;color:#111;border:2px solid #111}
+    .back{transform:rotateY(180deg);color:#111}
+
+    .controls{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    button{background:#0099CC;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.secondary{background:#00ffff;color:#111}
+
+    aside{padding:16px;border-radius:8px}
+    input,textarea{width:100%;padding:8px;margin-top:4px;border:1px solid #ddd;border-radius:6px;font-size:14px}
+    .list{margin-top:12px;max-height:360px;overflow:auto;color:#111}
+    .card-item{border:1px dashed #111;padding:8px;border-radius:6px;margin-bottom:8px;color:#111}
+
+    @media(max-width:900px){.app{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <section class="study">
+      <h2>Modo Estudio</h2>
+      <p>Haz clic en la tarjeta para ver la respuesta.</p>
+      <div class="card-stage">
+        <div id="flashcard" class="flashcard">
+          <div class="card-content front" id="cardFront">Pregunta</div>
+          <div class="card-content back" id="cardBack">Respuesta</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="prevBtn" class="secondary">Anterior</button>
+        <button id="nextBtn" class="secondary">Siguiente</button>
+        <button id="shuffleBtn">Mezclar</button>
+        <button id="addKnownBtn">Marcar como sabido</button>
+        <span style="margin-left:auto" id="indexLabel">0 / 0</span>
+      </div>
+    </section>
+
+    <aside>
+      <h2>Crear Flashcards</h2>
+      <form id="cardForm">
+        <label>Pregunta<input id="question" type="text" required></label>
+        <label>Respuesta<textarea id="answer" required></textarea></label>
+        <button type="submit">Añadir</button>
+      </form>
+      <div class="list" id="cardsList"></div>
+    </aside>
+  </div>
+
+  <script>
+    const STORAGE_KEY='flashcards_v1';
+    let flashcards=[];let index=0;let flipped=false;
+
+    const cardFront=document.getElementById('cardFront');
+    const cardBack=document.getElementById('cardBack');
+    const flashcardEl=document.getElementById('flashcard');
+    const indexLabel=document.getElementById('indexLabel');
+    const prevBtn=document.getElementById('prevBtn');
+    const nextBtn=document.getElementById('nextBtn');
+    const shuffleBtn=document.getElementById('shuffleBtn');
+    const addKnownBtn=document.getElementById('addKnownBtn');
+    const questionInput=document.getElementById('question');
+    const answerInput=document.getElementById('answer');
+    const cardForm=document.getElementById('cardForm');
+    const cardsList=document.getElementById('cardsList');
+
+    function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(flashcards));}
+    function load(){const raw=localStorage.getItem(STORAGE_KEY);flashcards=raw?JSON.parse(raw):[];}
+
+    function renderList(){
+      cardsList.innerHTML='';
+      flashcards.forEach((c,i)=>{
+        const div=document.createElement('div');div.className='card-item';div.innerHTML=`<strong>${c.q}</strong><br>${c.a}`;
+        cardsList.appendChild(div);
+      });
+    }
+
+    function renderCard(){
+      if(flashcards.length===0){cardFront.textContent='No hay tarjetas';cardBack.textContent='';indexLabel.textContent='0 / 0';return;}
+      const c=flashcards[index];
+      cardFront.textContent=c.q;
+      cardBack.textContent=c.a;
+      indexLabel.textContent=`${index+1} / ${flashcards.length}`;
+      setFlipped(false);
+    }
+
+    function setFlipped(f){flipped=f;flashcardEl.classList.toggle('flipped',f);}
+    function nextCard(){if(flashcards.length===0)return;index=(index+1)%flashcards.length;renderCard();}
+    function prevCard(){if(flashcards.length===0)return;index=(index-1+flashcards.length)%flashcards.length;renderCard();}
+
+    function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+
+    cardForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      const q=questionInput.value.trim();const a=answerInput.value.trim();
+      if(!q||!a)return alert('Completa ambos campos');
+      flashcards.push({q,a});save();renderList();renderCard();questionInput.value='';answerInput.value='';
+    });
+
+    flashcardEl.addEventListener('click',()=>setFlipped(!flipped));
+    nextBtn.addEventListener('click',nextCard);
+    prevBtn.addEventListener('click',prevCard);
+    shuffleBtn.addEventListener('click',()=>{shuffleArray(flashcards);save();renderList();index=0;renderCard();});
+    addKnownBtn.addEventListener('click',()=>{if(flashcards.length===0)return;flashcards.splice(index,1);save();renderList();if(index>=flashcards.length)index=Math.max(0,flashcards.length-1);renderCard();});
+
+    load();renderList();renderCard();
+  </script>
+</body>
+</html>

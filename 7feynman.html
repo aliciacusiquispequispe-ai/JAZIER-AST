@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAZIER-AST: Juego Feynman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('tecnicas.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.8);
+      padding: 15px 30px;
+    }
+
+    header .logo { font-size: 1.8em; font-weight: bold; }
+    nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+    nav a:hover, nav a.activo { color: #00ffcc; }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: rgba(0,0,30,0.75);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+ input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+      margin-top: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background: #00e5ff;
+      color: #000;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0,255,204,0.2);
+      border-radius: 10px;
+      display: none;
+    }
+
+    .ejemplo {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    h1 { text-align: center; color: #00e5ff; margin-bottom: 15px; }
+    textarea, input { width: 100%; padding: 10px; border-radius: 5px; border: none; font-size: 1em; }
+    button { padding:10px 20px; font-size:1em; border:none; border-radius:5px; background:#00e5ff; color:#000; cursor:pointer; }
+    #resultado { margin-top: 20px; padding: 15px; background: rgba(0,255,204,0.2); border-radius: 10px; display: none; }
+ footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00e5ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width:900px){
+      header { flex-direction: column; gap: 10px; }
+      main { width: 90%; padding: 20px; }
+      .sinoptico-container { grid-template-columns: 1fr; }
+      textarea { height: 100px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="logo">JAZIER-AST</div>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="tecnicas.html">Técnicas</a>
+    <a href="7feynman.html"class="activo"> Tecnica Feynman</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<br>
+<fieldset>
+	<section id="Feynman" class="tecnica">
+            <h1>7. Feynman (Es el metodo aprende y comprende)</h1>
+<font color="#FFFFFF">
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+  <img src="man.jpeg" alt="Ejemplo" width="600" height="300" alt="flash cards"><style="width:150px; height:auto; border-radius:8px;">
+<br>
+  <p style="text-align: justify;">
+La Técnica Feynman es una de esas metodologías que ha ido ganando cada vez más importancia en los últimos años debido a su versatilidad y eficacia. Una filosofía que promueve el verdadero entendimiento de cualquier tema complejo a través de cuatro pasos perfectamente estructurados.</p>
+  <p style="text-align: justify;">
+Además de ayudar a memorizar información, su principal objetivo es facilitar la integración de los diferentes conceptos en profundidad, de manera que sean entendidos al detalle y que puedan ser explicados con claridad y sencillez a cualquier persona, independientemente de su nivel de conocimiento sobre el tema. </p>
+  <p style="text-align: justify;">
+Así pues, la Técnica Feynman se convierte en una herramienta muy eficaz tanto para estudiantes como para profesionales que necesitan adquirir y retener nuevos conocimientos de manera eficaz y duradera.</p>
+</div>
+  <BR>          	
+<fieldset>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+ <h1>¿Qué es la técnica de Feynman?</h1>
+<br>
+  <p style="text-align: justify;">
+La Técnica Feynman es una de esas metodologías que ha ido ganando cada vez más importancia en los últimos años debido a su versatilidad y eficacia. Una filosofía que promueve el verdadero entendimiento de cualquier tema complejo a través de cuatro pasos perfectamente estructurados.</p>
+  <p style="text-align: justify;">
+Este método se centra principalmente en la comprensión y explicación de conceptos complejos de forma simple y eficaz. Parte de la premisa de que, si no podemos explicar un concepto de manera sencilla, es probable que no lo hayamos entendido perfectamente.</p>
+  <p style="text-align: justify;">
+Al obligar a los estudiantes a confrontar y resolver cualquier falta de claridad en su propio entendimiento, no solo se favorece la asimilación de ideas complejas, sino también una comprensión más profunda de las mismas. Pero además, se refuerza la capacidad de recordar y aplicar los conocimientos en diferentes contextos.</p>
+</div>
+</fieldset>
+<p style="text-align: justify;">
+<h1>¿Cuáles son los 4 pasos de la técnica de Feynman?</h1>
+La metodología de Feynman se basa en cuatro pasos principales: seleccionar un concepto, explicarlo de manera simple, resolver posibles dudas y revisar y simplificar. 
+
+</p>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+<ol>
+<lu><h3>Paso 1:</h3> Seleccionar el concepto o tema a estudiar
+El primer paso es elegir el concepto o tema que queremos dominar, lo que implica identificar el tema, pero también ser capaz de definirlo con precisión desde el principio. Esto te ayudará a focalizarte desde el principio y establecer un marco claro de estudio.</lu>
+<lu><h3>Paso 2:</h3> Desarrollar el tema en el papel
+Una vez que hayas identificado el tema, el siguiente paso es profundizar en él. Lee, investiga y estudia todo lo relacionado con el tema elegido. Luego, escribe todo lo que puedas recordar de manera clara y sencilla. Además, de ayudarte a fortalecer tu memoria, este proceso también te obligará a organizar tus pensamientos de manera coherente. En este paso, puede resultar útil elaborar diagramas, esquemas y otros recursos visuales para fortalecer tu comprensión.</lu>
+<lu><h3>Paso 3:</h3> Completar la información que falta
+Durante el proceso de explicación, puede que detectes lagunas en tus conocimientos. Este tercer paso consiste en revisar y completar cualquier información que te falte. Para ello, puedes recurrir a diferentes fuentes como libros, apuntes o Internet para ampliar tu conocimiento y tener una comprensión integral del tema.</lu>
+<lu><h3>Paso 4:</h3> Reescribir y explicar el tema como si se lo enseñaras a un niño
+El paso final consiste en simplificar y explicar el tema como si estuvieras enseñándoselo a alguien que no tenga conocimientos previos sobre ello, lo que obliga a depurar la información en su forma más básica y comprensible. Además, de consolidar tu comprensión, facilitará la memorización a largo plazo.</lu>
+</ol>
+<div>
+
+<center>
+                <img src="tf.jpg" align="center" width="600" height="300" alt="feynman">
+<br> <font color="#00FFFF"> PASOS DE LA TECNICA DE FEYNMAN <font> <br>
+               <img src="we.webp" align="center" width="600" height="300" alt="feynman">
+</center>
+</div>
+           
+        </section>
+</font>
+</fieldset>
+<br>
+<center>
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+
+ <h1>PRUEBA LA TECNICA DE FEYNMAN CON JAZIER AST</h1>
+
+</center>
+
+<main>
+  <h1>Ejemplo: Técnica de Feynman</h1>
+
+  <p>La técnica de Feynman es una forma de aprender explicando los conceptos con tus propias palabras. En este ejemplo, podrás practicarla paso a paso.</p>
+
+  <h2>1. Escribe el concepto que quieres aprender:</h2>
+  <input type="text" id="concepto" placeholder="Ej: Fotosíntesis">
+
+  <h2>2. Explica el concepto con tus propias palabras:</h2>
+  <textarea id="explicacion" rows="6" placeholder="Explica aquí como si enseñaras a otra persona..."></textarea>
+
+  <button onclick="revisarExplicacion()">Revisar explicación</button>
+
+  <div id="resultado"></div>
+
+  <h2>Ejemplo Didáctico</h2>
+  <div class="ejemplo">
+    <strong>Concepto:</strong> Fotosíntesis<br>
+    <strong>Explicación Feynman:</strong> Es el proceso por el cual las plantas convierten la luz del sol en energía para crecer, usando dióxido de carbono y agua. Si algo no se entiende, se vuelve a estudiar y se simplifica la explicación.
+  </div>
+</main>
+
+<script>
+function revisarExplicacion() {
+  const concepto = document.getElementById('concepto').value.trim();
+  const explicacion = document.getElementById('explicacion').value.trim();
+  const resultado = document.getElementById('resultado');
+
+  if(concepto === "" || explicacion === "") {
+    resultado.style.display = 'block';
+    resultado.style.background = 'rgba(255,0,0,0.3)';
+    resultado.innerHTML = "Por favor, completa ambos campos para revisar tu explicación.";
+    return;
+  }
+
+  // Validación simple: revisar si menciona al menos una palabra del concepto
+  let palabrasClave = concepto.toLowerCase().split(" ");
+  let puntuacion = palabrasClave.filter(p => explicacion.toLowerCase().includes(p)).length;
+
+  resultado.style.display = 'block';
+  resultado.style.background = 'rgba(0,255,204,0.2)';
+
+  if(puntuacion === 0) {
+    resultado.innerHTML = "Tu explicación no parece incluir el concepto principal. Intenta enfocarte en lo que significa.";
+  } else if(puntuacion < palabrasClave.length) {
+    resultado.innerHTML = "Vas bien, pero algunas partes del concepto no están claras. Revisa y mejora tu explicación.";
+  } else {
+    resultado.innerHTML = "¡Excelente! Has incluido todos los elementos importantes del concepto. ¡Sigue practicando así!";
+  }
+}
+</script>
+
+<main>
+  <h1>Juego: Técnica de Feynman</h1>
+  <p>Instrucciones:<br>
+     1. Escribe un concepto que quieras aprender.<br>
+     2. Explica con tus palabras como si enseñaras a alguien más.<br>
+     3. Marca las partes que no entiendes.<br>
+     4. Reescribe tu explicación para mejorarla.<br>
+     5. Repite hasta que tu explicación sea clara.</p>
+
+  <label>Concepto a aprender:</label>
+  <input type="text" id="concepto" placeholder="Ej: Fotosíntesis">
+
+  <label>Tu explicación:</label>
+  <textarea id="explicacion" rows="6" placeholder="Explica con tus palabras..."></textarea>
+
+  <div style="text-align:center; margin-top:10px;">
+    <button onclick="revisarExplicacion()">Revisar explicación</button>
+  </div>
+
+  <div id="resultado"></div>
+</main>
+
+
+<footer>
+    <div>
+      <a href="inicio.html">Inicio</a> |
+      <a href="tecnicas.html">Técnicas</a> |
+      <a href="plantillas.html">Plantillas</a> |
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div>© 2025 JAZIER-AST | Desarrollado por JAZIER-AST</div>
+    <div>Contacto: Tel. 73212128 | Email: contacto@jazierast.com</div>
+  </footer>
+<script>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAZIER-AST: Juego Cuadro Sinóptico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ---------- ESTILOS GENERALES ---------- */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('tecnicas.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.8);
+      padding: 15px 30px;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.activo {
+      color: #00ffcc;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: rgba(0,0,30,0.75);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+
+    h2, h3 {
+      color: #99ffcc;
+    }
+
+    .instructions {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .sinoptico-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-size: 15px;
+      background: rgba(255,255,255,0.85);
+      color: #111;
+    }
+
+    button {
+      background: #00e5ff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 10px 10px 0 0;
+      color: #000;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #00bcd4;
+    }
+
+    .results {
+      margin-top: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 8px;
+      color: #cfffff;
+    }
+
+    .correct { color: #80ff80; font-weight: bold; }
+    .missing { color: #ffd54f; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00e5ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width:900px){
+      header { flex-direction: column; gap: 10px; }
+      main { width: 90%; padding: 20px; }
+      .sinoptico-container { grid-template-columns: 1fr; }
+      textarea { height: 100px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="5sinptico.html" class="activo">Cuadro Sinoptico</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+<br>
+<fieldset>
+        <section id="cuadrosinoptico" class="tecnica">
+            <h1>5. Cuadro sinóptico</h1>
+<font color="#FFFFFF">
+            <p>Organiza la información jerárquicamente mediante líneas y llaves.</p>
+            
+                <p>Para hacer un cuadro sinóptico, debes empezar por identificar y jerarquizar las ideas de un tema, desde el más general al más específico, y luego representar esa estructura con llaves que conectan los conceptos.</p>
+                <center><img src="CuadroSinoptico.jpeg" align="center" width="600" height="300"  alt="Cuadro sinóptico"></center>
+	<p>Identifica el tema principal: Lee el material de estudio y define la idea central del texto o tema que vas a organizar. </p>
+	<br><font color="#00FFFF"><p>Revisa y organiza las ideas:</font>
+<br>Identifica las ideas principales, secundarias y complementarias del tema. 
+<br>Agrupa las ideas en categorías lógicas y establece las relaciones entre ellas. 
+<br>Utiliza palabras clave o conceptos breves para cada nive</p>
+	<br><font color="#00FFFF"><p>Elabora el cuadro con llaves:</font> 
+<br>Coloca el tema principal a la izquierda, en un extremo, para que sirva de punto de partida. 
+<br>Usa llaves para conectar la idea principal con las ideas secundarias y, de ahí, con las ideas más detalladas. 
+<br>El cuadro se va abriendo de izquierda a derecha o de arriba hacia abajo, desde lo general a lo particular. </p>
+	<br><font color="#00FFFF"><p>Ajusta y revisa:</font>
+<br>Verifica que la información esté bien organizada y que la jerarquía sea clara. 
+<br>Asegúrate de que las ideas sean concisas y que no haya información redundante. 
+<br>Puedes usar herramientas digitales para hacerlo más visual o decorarlo a tu gusto. </p>
+
+<font color="#00FFFF"><p>RECOMEDACIONES DE APPS</p></font>
+<ol>
+<font color="#FFFFFF"><li>MindMeister<p></p></li></font>
+<font color="#FFFFFF"><li><p>Coggle</p></li></font>
+<font color="#FFFFFF"><li><p>Lucidchart</p></li></font>
+<font color="#FFFFFF"><li><p>Canva</p></li></font>
+</ol>
+<font color="#00FFFF"><p>RECOMEDACIONES DE JUEGOS</p></font>
+<ol>
+<font color="#FFFFFF"><li><p>Mind Maping</p></li></font>
+<font color="#FFFFFF"><li><p>Diagram Battle</p></li></font>
+<font color="#FFFFFF"><li><p>Coggle Challenge</p></li></font>
+</ol>
+
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+<center>
+ <h1>PRUEBA LA TECNICA DEL CUADRO SINOPTICO CON JAZIER AST</h1>
+</center>
+            </div>
+        </section>
+</font>
+</fieldset>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <h1> Juego Educativo: Cuadro Sinóptico</h1>
+
+    <div class="instructions">
+      <h2> Instrucciones:</h2>
+      <p>El objetivo es practicar la técnica del <b>cuadro sinóptico</b>. Debes completar las secciones para organizar la información de manera jerárquica.</p>
+      <ul>
+        <li><b>Tema principal:</b> Escribe el tema central del texto.</li>
+        <li><b>Subtemas:</b> Organiza los subtemas o ideas principales.</li>
+        <li><b>Detalles:</b> Agrega información específica relacionada con cada subtema.</li>
+      </ul>
+      <p>Cuando termines, presiona <b>Comprobar</b> para recibir retroalimentación.</p>
+    </div>
+
+    <!-- CUADRO SINÓPTICO -->
+    <div class="sinoptico-container">
+      <div>
+        <h3>Tema Principal</h3>
+        <textarea id="tema" placeholder="Ejemplo: Animales Felinos"></textarea>
+      </div>
+
+      <div>
+        <h3>Subtema 1</h3>
+        <textarea id="sub1" placeholder="Ejemplo: León"></textarea>
+      </div>
+
+      <div>
+        <h3>Detalles 1</h3>
+        <textarea id="det1" placeholder="Ejemplo: Vive en manada, sabana"></textarea>
+      </div>
+
+      <div>
+        <h3>Subtema 2</h3>
+        <textarea id="sub2" placeholder="Ejemplo: Tigre"></textarea>
+      </div>
+
+      <div>
+        <h3>Detalles 2</h3>
+        <textarea id="det2" placeholder="Ejemplo: Solitario, selva"></textarea>
+      </div>
+
+      <div>
+        <h3>Subtema 3</h3>
+        <textarea id="sub3" placeholder="Ejemplo: Leopardo"></textarea>
+      </div>
+
+      <div>
+        <h3>Detalles 3</h3>
+        <textarea id="det3" placeholder="Ejemplo: Rayas, solitario"></textarea>
+      </div>
+    </div>
+
+    <div>
+      <button id="checkBtn">Comprobar</button>
+      <button id="resetBtn">Borrar todo</button>
+    </div>
+
+    <div id="result" class="results" hidden></div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div>
+      <a href="inicio.html">Inicio</a> |
+      <a href="tecnicas.html">Técnicas</a> |
+      <a href="plantillas.html">Plantillas</a> |
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div>© 2025 JAZIER-AST | Desarrollado por JAZIER-AST</div>
+    <div>Contacto: Tel. 73212128 | Email: contacto@jazierast.com</div>
+  </footer>
+
+  <!-- SCRIPT DEL JUEGO -->
+  <script>
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const result = document.getElementById("result");
+
+    checkBtn.addEventListener("click", () => {
+      const tema = document.getElementById("tema").value.toLowerCase().trim();
+      const sub1 = document.getElementById("sub1").value.toLowerCase().trim();
+      const det1 = document.getElementById("det1").value.toLowerCase().trim();
+      const sub2 = document.getElementById("sub2").value.toLowerCase().trim();
+      const det2 = document.getElementById("det2").value.toLowerCase().trim();
+      const sub3 = document.getElementById("sub3").value.toLowerCase().trim();
+      const det3 = document.getElementById("det3").value.toLowerCase().trim();
+
+      if (!tema || !sub1 || !det1 || !sub2 || !det2 || !sub3 || !det3) {
+        alert("Completa todas las secciones antes de comprobar tu trabajo.");
+        return;
+      }
+
+      // Palabras clave esperadas
+      const expected = {
+        tema: ["animales", "felinos"],
+        sub1: ["león"],
+        det1: ["manada", "sabana"],
+        sub2: ["tigre"],
+        det2: ["solitario", "selva"],
+        sub3: ["leopardo", "leopardos"],
+        det3: ["rayas", "solitario"]
+      };
+
+      let score = 0;
+      for (let key in expected) {
+        const val = eval(key);
+        if (expected[key].some(word => val.includes(word))) score++;
+      }
+
+      let message = "";
+      if (score === 7) {
+        message = `<p class="correct">¡Excelente! Has completado correctamente el cuadro sinóptico. 🦁🐯🐆</p>`;
+      } else if (score >= 4) {
+        message = `<p>Buen intento . Has acertado ${score} de 7 respuestas.</p>`;
+      } else {
+        message = `<p> Aún puedes mejorar. Solo acertaste ${score} de 7. Revisa las ideas principales y detalles.</p>`;
+      }
+
+      result.hidden = false;
+      result.innerHTML = `<h3>Resultados:</h3>${message}`;
+    });
+
+    resetBtn.addEventListener("click", () => {
+      const inputs = document.querySelectorAll("textarea");
+      inputs.forEach(input => input.value = "");
+      result.hidden = true;
+    });
+  </script>
+</body>
+</html>

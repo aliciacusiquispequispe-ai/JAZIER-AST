@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juego Mapas Conceptuales - JAZIER-AST</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0; 
+  font-family:'Roboto', sans-serif;
+  background: url('tecnicas.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color:#fff;
+}
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  background: rgba(0,0,0,0.8); padding:15px 30px;
+}
+header .logo { font-size:1.8em; font-weight:bold; }
+nav a { color:#fff; margin-left:20px; text-decoration:none; font-weight:bold; }
+nav a.activo { color:#00ffcc; }
+main { max-width:1200px; margin:40px auto; background:rgba(0,0,30,0.85); padding:30px; border-radius:15px; box-shadow:0 8px 24px rgba(0,0,0,0.6); }
+h1,h2 { text-align:center; }
+h1 { color:#00e5ff; }
+h2 { color:#99ffcc; margin-top:20px; }
+button { padding:8px 15px; margin:5px; border:none; border-radius:5px; background:#00e5ff; color:#000; cursor:pointer; }
+#canvasContainer { position: relative; width:100%; height:500px; border:2px dashed #00e5ff; margin-top:20px; border-radius:10px; overflow:hidden; }
+.node {
+  position:absolute; padding:10px 15px; background: rgba(0,255,204,0.3);
+  border:2px solid #00e5ff; border-radius:10px; cursor:move; user-select:none;
+}
+.line {
+  position:absolute; background:#00e5ff; height:2px; transform-origin:left center;
+}
+.instructions { text-align:left; margin-top:15px; }
+footer { text-align:center; padding:15px 0; background: rgba(0,0,0,0.8); color:#fff; margin-top:30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">JAZIER-AST</div>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="tecnicas.html" >Técnicas</a>
+    <a href="10conceptual.html" class="activo">Técnica del Mapa conceptual</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<br>
+<fieldset>
+<section id="mapa conceptual" class="tecnica">
+            <center><h1>10. Mapa Conceptual</h1></center>
+<font color="#FFFFFF">
+            <p>Conectar ideas y conceptos a través de líneas y palabras de enlace</p>
+           
+            <div id="info-mapa conceptual" class="informacion-detalle">
+ 		<center><img src="aaa.jpeg" align="center" width="600" height="300" alt="mapa conceptual"></center>
+                <p> Son graficos que ilustran las relaciones entre elementos de un tema, ayudando a sintetizar información compleja, mejorar la comprensión y facilitar el aprendizaje.  </p>
+               <center> <img src="mmc.png" align="center" width="600" height="300" alt="mapa conceptual"> </center>
+            </div>
+        </section>
+</font>
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+<center>
+ <h1>PRUEBA LA TECNICA DE LOS MAPAS CONCEPTUALES CON JAZIER AST</h1>
+</center>
+</fieldset>
+<br>
+
+<main>
+<h1>Juego: Mapas Conceptuales</h1>
+<p style="text-align:center;">Aprende a organizar tus conceptos visualmente y fortalece tu comprensión.</p>
+
+<div class="instructions">
+  <h2>Instrucciones:</h2>
+  <ul>
+    <li>Haz clic en "Agregar Nodo" para crear un concepto.</li>
+    <li>Arrastra los nodos para ubicarlos correctamente.</li>
+    <li>Selecciona dos nodos y haz clic en "Conectar Nodos" para crear relaciones.</li>
+    <li>Puedes eliminar nodos seleccionados con "Eliminar Nodo".</li>
+    <li>Reorganiza tu mapa hasta que todos los conceptos estén conectados.</li>
+  </ul>
+</div>
+
+<div style="text-align:center; margin-top:15px;">
+  <input type="text" id="nodeText" placeholder="Escribe un concepto">
+  <button onclick="addNode()">Agregar Nodo</button>
+  <button onclick="connectNodes()">Conectar Nodos</button>
+  <button onclick="deleteNode()">Eliminar Nodo</button>
+</div>
+
+<div id="canvasContainer"></div>
+</main>
+
+<footer>&copy; 2025 JAZIER-AST | Todos los derechos reservados</footer>
+
+<script>
+let nodes = [];
+let lines = [];
+let selectedNodes = [];
+const container = document.getElementById('canvasContainer');
+
+function addNode() {
+  const text = document.getElementById('nodeText').value.trim();
+  if(!text) return alert("Escribe un concepto");
+  const node = document.createElement('div');
+  node.className = 'node';
+  node.innerText = text;
+  node.style.left = '50px';
+  node.style.top = '50px';
+  node.draggable = true;
+  
+  node.addEventListener('mousedown', startDrag);
+  node.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if(selectedNodes.includes(node)){
+      node.style.border = '2px solid #00e5ff';
+      selectedNodes = selectedNodes.filter(n=>n!==node);
+    } else {
+      node.style.border = '2px solid yellow';
+      selectedNodes.push(node);
+    }
+  });
+
+  container.appendChild(node);
+  nodes.push(node);
+}
+
+let currentDrag = null;
+let offsetX, offsetY;
+
+function startDrag(e){
+  currentDrag = e.target;
+  offsetX = e.offsetX;
+  offsetY = e.offsetY;
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', stopDrag);
+}
+
+function drag(e){
+  if(!currentDrag) return;
+  let rect = container.getBoundingClientRect();
+  currentDrag.style.left = (e.clientX - rect.left - offsetX) + 'px';
+  currentDrag.style.top = (e.clientY - rect.top - offsetY) + 'px';
+  updateLines();
+}
+
+function stopDrag(){
+  currentDrag = null;
+  document.removeEventListener('mousemove', drag);
+  document.removeEventListener('mouseup', stopDrag);
+}
+
+function connectNodes(){
+  if(selectedNodes.length!==2) return alert("Selecciona exactamente 2 nodos");
+  const [a,b] = selectedNodes;
+  const line = document.createElement('div');
+  line.className = 'line';
+  container.appendChild(line);
+  lines.push({line,a,b});
+  updateLines();
+  selectedNodes.forEach(n=>n.style.border='2px solid #00e5ff');
+  selectedNodes=[];
+}
+
+function updateLines(){
+  lines.forEach(l=>{
+    const aRect = l.a.getBoundingClientRect();
+    const bRect = l.b.getBoundingClientRect();
+    const cRect = container.getBoundingClientRect();
+    const x1 = aRect.left + aRect.width/2 - cRect.left;
+    const y1 = aRect.top + aRect.height/2 - cRect.top;
+    const x2 = bRect.left + bRect.width/2 - cRect.left;
+    const y2 = bRect.top + bRect.height/2 - cRect.top;
+    const length = Math.hypot(x2-x1, y2-y1);
+    const angle = Math.atan2(y2-y1, x2-x1)*180/Math.PI;
+    l.line.style.width = length+'px';
+    l.line.style.left = x1+'px';
+    l.line.style.top = y1+'px';
+    l.line.style.transform = `rotate(${angle}deg)`;
+  });
+}
+
+function deleteNode(){
+  if(selectedNodes.length!==1) return alert("Selecciona un nodo para eliminar");
+  const node = selectedNodes[0];
+  // Eliminar líneas conectadas
+  lines = lines.filter(l=>{
+    if(l.a===node || l.b===node){
+      container.removeChild(l.line);
+      return false;
+    }
+    return true;
+  });
+  container.removeChild(node);
+  nodes = nodes.filter(n=>n!==node);
+  selectedNodes=[];
+  updateLines();
+}
+
+</script>
+
+</body>
+</html>

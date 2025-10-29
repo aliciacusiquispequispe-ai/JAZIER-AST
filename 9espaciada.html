@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repetición Espaciada - JAZIER-AST</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: url('tecnicas.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.8);
+  padding: 15px 30px;
+}
+header .logo { font-size: 1.8em; font-weight: bold; }
+nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: bold; }
+nav a.activo { color: #00ffcc; }
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgba(0,0,30,0.85);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+h1 { color: #00e5ff; text-align: center; }
+h2 { color: #99ffcc; margin-top: 25px; text-align: center; }
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background: #00e5ff;
+  color: #000;
+  cursor: pointer;
+  margin: 10px;
+}
+.flashcard-container { perspective: 1000px; display:flex; justify-content:center; margin-top:20px; flex-wrap:wrap; gap:20px; }
+.flashcard {
+  width: 300px; height: 150px; border-radius: 15px; cursor: pointer;
+  transform-style: preserve-3d; transition: transform 0.6s; position: relative;
+  display: flex; align-items: center; justify-content: center; font-size: 1.2em; background: rgba(255,255,255,0.1);
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard .front, .flashcard .back { position:absolute; width:100%; height:100%; backface-visibility:hidden; display:flex; align-items:center; justify-content:center; padding:10px; text-align:center; }
+.flashcard .back { transform: rotateY(180deg); }
+#resultado { margin-top:20px; padding:15px; background: rgba(0,255,204,0.2); border-radius:10px; text-align:center; }
+footer { text-align: center; padding: 15px 0; background: rgba(0,0,0,0.8); color: #fff; margin-top: 30px; }
+fieldset { margin-bottom: 30px; }
+.informacion-detalle { display:none; margin-top: 15px; text-align:center; }
+input, textarea { width: 100%; padding:8px; margin:5px 0; border-radius:5px; border:none; }
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo">JAZIER-AST</div>
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="tecnicas.html" >Técnicas</a>
+    <a href="9espaciada.html" class="activo">Técnicas de repeticion espaciada</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<fieldset>
+  <section id="info-tecnica">
+    <h1>Repetición Espaciada</h1>
+<p>es una técnica de aprendizaje memorístico que consiste en aprender un material determinado dejando pasar espacios de tiempo cada vez más largos</p>
+    <p>La técnica de repetición espaciada consiste en distribuir el repaso de los contenidos a lo largo del tiempo para mejorar la memoria a largo plazo. Al repasar con intervalos crecientes, la información se consolida y se evita el olvido.</p>
+<center><img src="dd.jpeg" width="600" height="300" alt="Repetición Espaciada"></center>
+<fieldset>
+<br>
+<h1>Que es?</h1>
+<p>La repetición espaciada es un método científicamente probado que consiste en repasar la información a intervalos más cortos, lo que potencia la memoria y reduce la probabilidad de olvidarlo todo. Estudios demuestran que puede mejorar significativamente el aprendizaje y reducir el tiempo dedicado al estudio. En este artículo, explicaremos cómo usar la repetición espaciada y el método 2357 para planificar tus sesiones de repaso, así como algunos métodos sencillos que puedes usar.</p>
+<center><img src="gg.jpg" width="600" height="300" alt="Repetición Espaciada"></center>
+</fieldset>
+<h2>Pasos para hacerlo<h2>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+<br>
+  <p style="text-align: justify;">
+<font color="#FFFFFF">
+<ol>
+<li>Inmediatamente después de una lección : resuma los puntos clave con sus propias palabras, cree una guía de estudio o haga  tarjetas didácticas.</li>
+<li>Al día siguiente : use  el recuerdo activo para ponerse a prueba sin mirar sus notas</li>
+<li>Tres días después : vuelva a ponerse a prueba, intente decir bruscamente , la  técnica de Feynman o haga preguntas de exámenes anteriores</li>
+<li>Una semana después : siga probando e identifique con qué tiene más dificultades, concéntrese en eso.</li>
+</ol>
+<font>
+</p>
+ <img src="aa.jpg" alt="Ejemplo" width="600" height="200" alt="flash cards"><style="width:150px; height:auto; border-radius:8px;">
+</div>
+<br>
+<fieldset>
+<h2>Beneficios:</h2>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+  <img src="EEE.webp" alt="Ejemplo" width="600" height="300" alt="flash cards"><style="width:150px; height:auto; border-radius:8px;">
+<br>
+  <p style="text-align: justify;">
+    <ul>
+      <li>Mayor retención de información.</li>
+      <li>Evita estudiar de manera masiva (cramming).</li>
+      <li>Permite reforzar los conocimientos de manera progresiva.</li>
+    </ul>
+</p>
+</div>
+</fieldset>
+
+<h2>Ejemplo práctico:</h2>
+    <p>Si aprendes un concepto hoy, lo repasas mañana, luego a los 3 días, luego a los 7, y así sucesivamente.</p>
+      <img src="imagenes/re.png" width="600" height="300" alt="Repetición Espaciada">
+      <p>Ejemplo: la curva del olvido muestra cómo olvidamos si no repasamos a intervalos.</p>
+      <img src="cccc.webp" width="600" height="300" alt="Curva del olvido">
+    </div>
+  </section>
+</fieldset>
+<form action="tecnicas.html" method="get">
+    <button type="submit">volver a la pagina de tecnicas</button>
+</form>
+<center>
+ <h1>PRUEBA LA TECNICA DE LA REPETICION ESPACIDA CON JAZIER AST</h1>
+</center>
+<main>
+  <h1>Juego de Flashcards con Repetición Espaciada</h1>
+  <p>Instrucciones:<br>
+  - Haz clic en la tarjeta para ver la respuesta.<br>
+  - Marca si recuerdas o no para espaciar la tarjeta correctamente.<br>
+  - Puedes crear tus propias tarjetas para estudiar tus temas.</p>
+
+  <!-- Crear nuevas flashcards -->
+  <fieldset>
+    <legend>Crear tu propia flashcard</legend>
+    <input type="text" id="nuevaPregunta" placeholder="Escribe la pregunta">
+    <textarea id="nuevaRespuesta" placeholder="Escribe la respuesta"></textarea>
+    <button onclick="agregarFlashcard()">Agregar Flashcard</button>
+  </fieldset>
+<!-- Dentro del <main>, reemplaza la sección de flashcards por esto -->
+<h2>Tarjetas de repaso</h2>
+<div class="flashcard-container" id="contenedorFlashcards"></div>
+<div id="resultado"></div>
+
+<script>
+// Mostrar/ocultar información
+function mostrarInformacion(id){
+  const elem = document.getElementById(id);
+  elem.style.display = elem.style.display === 'none' ? 'block' : 'none';
+}
+
+// Tarjetas iniciales
+let tarjetas = [
+  {pregunta:"¿Qué es la fotosíntesis?", respuesta:"Proceso donde las plantas convierten luz solar en energía.", intervalo:1, proximoRepaso:1},
+  {pregunta:"¿Qué es la célula?", respuesta:"Unidad básica de los seres vivos.", intervalo:1, proximoRepaso:1},
+  {pregunta:"¿Qué es la gravedad?", respuesta:"Fuerza que atrae los cuerpos entre sí.", intervalo:1, proximoRepaso:1}
+];
+
+let diaActual = 1;
+
+// Mostrar todas las tarjetas disponibles
+function mostrarFlashcards(){
+  const contenedor = document.getElementById('contenedorFlashcards');
+  contenedor.innerHTML = '';
+  const disponibles = tarjetas.filter(t=>t.proximoRepaso<=diaActual);
+
+  if(disponibles.length === 0){
+    contenedor.innerHTML = "<p>¡No hay tarjetas para repasar hoy!</p>";
+    return;
+  }
+
+  disponibles.forEach((tarjeta,index)=>{
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'flashcard';
+    cardDiv.innerHTML = `
+      <div class="front">${tarjeta.pregunta}</div>
+      <div class="back">
+        ${tarjeta.respuesta}
+        <div style="margin-top:10px;">
+          <button onclick="recordado(${index})">Recordé ✅</button>
+          <button onclick="repasar(${index})">Volver a repasar 🔄</button>
+          <button onclick="eliminar(${index})">Eliminar 🗑️</button>
+        </div>
+      </div>
+    `;
+
+    cardDiv.addEventListener('click', ()=>{
+      cardDiv.classList.toggle('flipped');
+    });
+
+    contenedor.appendChild(cardDiv);
+  });
+}
+
+// Marcar tarjeta como recordada
+function recordado(index){
+  let tarjeta = tarjetas.filter(t=>t.proximoRepaso<=diaActual)[index];
+  tarjeta.intervalo *= 2;
+  tarjeta.proximoRepaso = diaActual + tarjeta.intervalo;
+  // Opcional: eliminarla si se recuerda muy bien
+  const eliminarConfirm = confirm("¿Deseas eliminar esta tarjeta porque la recordaste completamente?");
+  if(eliminarConfirm){
+    tarjetas = tarjetas.filter(t => t !== tarjeta);
+  }
+  mostrarFlashcards();
+}
+
+// Volver a repasar (reinicia el intervalo)
+function repasar(index){
+  let tarjeta = tarjetas.filter(t=>t.proximoRepaso<=diaActual)[index];
+  tarjeta.intervalo = 1;
+  tarjeta.proximoRepaso = diaActual + tarjeta.intervalo;
+  mostrarFlashcards();
+}
+
+// Eliminar tarjeta manualmente
+function eliminar(index){
+  let tarjeta = tarjetas.filter(t=>t.proximoRepaso<=diaActual)[index];
+  tarjetas = tarjetas.filter(t => t !== tarjeta);
+  mostrarFlashcards();
+}
+
+// Avanzar días automáticamente
+setInterval(()=>{ diaActual++; mostrarFlashcards(); },30000);
+
+// Inicializar
+mostrarFlashcards();
+</script>
+</main>
+<center>
+<font color="#00FFFF">
+ <button onclick="mostrarInformacion('info-Repeticion Espaciada')"><a href="91espaciada.html" target="_blank"><font color="#111"><h3>NIVEL 2</h3></font></a></button>
+</font>
+
+</center>
+
+<script>
+// Mostrar/ocultar información
+function mostrarInformacion(id){
+  const elem = document.getElementById(id);
+  elem.style.display = elem.style.display === 'none' ? 'block' : 'none';
+}
+
+// Tarjetas iniciales con intervalos
+let tarjetas = [
+  {pregunta:"¿Qué es la fotosíntesis?", respuesta:"Proceso donde las plantas convierten luz solar en energía.", intervalo:1, proximoRepaso:1},
+  {pregunta:"¿Qué es la célula?", respuesta:"Unidad básica de los seres vivos.", intervalo:1, proximoRepaso:1},
+  {pregunta:"¿Qué es la gravedad?", respuesta:"Fuerza que atrae los cuerpos entre sí.", intervalo:1, proximoRepaso:1}
+];
+
+let diaActual = 1;
+
+// Función para mostrar todas las flashcards
+function mostrarFlashcards(){
+  const contenedor = document.getElementById('contenedorFlashcards');
+  contenedor.innerHTML = '';
+  const disponibles = tarjetas.filter(t=>t.proximoRepaso<=diaActual);
+  disponibles.forEach((tarjeta,index)=>{
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'flashcard';
+    cardDiv.innerHTML = `<div class="front">${tarjeta.pregunta}</div><div class="back">${tarjeta.respuesta}</div>`;
+    cardDiv.addEventListener('click', ()=> cardDiv.classList.toggle('flipped'));
+    contenedor.appendChild(cardDiv);
+    // Botones para marcar
+    cardDiv.addEventListener('dblclick', ()=> {
+      let recordado = confirm("¿Recuerdas esta tarjeta? OK=Sí, Cancel=No");
+      if(recordado) tarjeta.intervalo*=2;
+      else tarjeta.intervalo=1;
+      tarjeta.proximoRepaso = diaActual + tarjeta.intervalo;
+      alert(recordado ? `Bien! La tarjeta se espaciará en ${tarjeta.intervalo} días.` : "Ups, repasarás pronto.");
+      mostrarFlashcards();
+    });
+  });
+}
+
+// Función para agregar flashcard creada por usuario
+function agregarFlashcard(){
+  const pregunta = document.getElementById('nuevaPregunta').value.trim();
+  const respuesta = document.getElementById('nuevaRespuesta').value.trim();
+  if(pregunta && respuesta){
+    tarjetas.push({pregunta,respuesta,intervalo:1,proximoRepaso:diaActual});
+    document.getElementById('nuevaPregunta').value = '';
+    document.getElementById('nuevaRespuesta').value = '';
+    mostrarFlashcards();
+  } else {
+    alert("Debes ingresar pregunta y respuesta.");
+  }
+}
+
+// Avanzar días automáticamente cada 30 segundos
+setInterval(()=>{ diaActual++; mostrarFlashcards(); },30000);
+
+mostrarFlashcards();
+</script>
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#hero">Inicio</a> |
+    <a href="#calendario">Calendario Mensual</a> |
+    <a href="#contenedor-tareas">Calendario de Tareas</a>
+  </div>
+  <div>© 2025 JAZIER-AST | Créditos: Desarrollo por JAZIER-AST</div>
+  <div>Contacto: Teléfono 73212128 | Email: contacto@jazierast.com</div>
+</footer>
+
+</body>
+</html>
