@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAZIER-AST: Técnicas de Estudio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Estilos Generales (Mezclados con los que proporcionaste) */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('tecnicas.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.8);
+            padding: 15px 30px;
+        }
+
+        header .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.activo {
+            color: #00ffcc;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 40px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+        }
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #99ffcc;
+            font-size: 1.8em;
+        }
+
+        /* 🔹 Carrusel de imágenes */
+        .carrusel {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .carrusel-contenedor {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+            /* CRUCIAL: Necesitamos que el contenedor sea más grande que el carrusel */
+            width: calc(6 * 200px); 
+        }
+
+        .carrusel-item {
+            /* 180px de ancho + 20px de gap = 200px */
+            min-width: 180px; 
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+	.carrusel .subtitulo {
+ 	 position: absolute;
+  	top:10px;
+  	left:50%;
+ 	 transform:translateX(-50%);
+  	background: rgba(0,0,0,0.5);
+  	padding:8px 15px;
+  	border-radius:5px;
+  	font-size:1em;
+	}
+
+        .carrusel-item:hover {
+            transform: scale(1.05);
+        }
+
+        .carrusel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flecha {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 50%;
+            z-index: 10; /* Para asegurar que las flechas estén sobre las imágenes */
+        }
+
+        .flecha:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .flecha.izquierda { left: 10px; }
+        .flecha.derecha { right: 10px; }
+
+        /* Estilos de las secciones de técnicas */(!--BORDES DE LAS TECNICAS--)
+        .tecnica {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 5px solid #99ffcc;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            scroll-margin-top: 100px;
+        }
+
+        .tecnica h3 { color: #99ffcc; }
+        
+        /* Contenedor de información oculta */
+        .informacion-detalle { 
+            display: none; 
+            margin-top: 15px;
+            padding: 10px;
+            border-left: 5px solid #84ffff;
+            background-color: rgba(255,255,255,0.2);
+            animation: fadeIn 0.4s;
+        }
+        
+        .informacion-detalle img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: block;
+        }
+        button {
+            background: #33ffcc;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover { background: #00cca0; }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.8);
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+        /* Estilos de Pomodoro */
+        .pomodoro-display {
+            font-size: 3em;
+            margin: 15px 0;
+            color: #00ffcc;
+            border: 2px solid #33ffcc;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 8px;
+            min-width: 120px;
+            text-align: center;
+        }
+        #pomodoroStatus {
+            color: #aaa;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .pomodoro-controls button {
+            margin-right: 10px;
+            background: #20b2aa; /* Color diferente para destacar */
+        }
+        .pomodoro-controls button:hover {
+            background: #19958d;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+/* Título resaltante de juegos */
+#titulo-jazier {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 3.5em;
+    padding: 20px;
+    background: linear-gradient(45deg, #1e90ff, #00ced1, #4CAF50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+#titulo-jazier:hover {
+    transform: scale(1.05);
+}
+
+footer {
+  text-align:center;
+  padding:20px;
+  background:#111;
+  color:white;
+  margin-top:20px;
+}
+footer a { color:#00e5ff; margin:0 10px; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+
+@media(max-width:900px){
+  .contenedor{flex-direction:column;align-items:center;}
+  .bloque{width:90%;}
+  header.navbar{flex-direction:column; gap:10px; padding:15px 20px;}
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">JAZIER-AST</div>
+        <nav>
+            <a href="inicio.html">Inicio</a>
+            <a href="tecnicas.html" class="activo">Técnicas</a>
+            <a href="recomendaciones.html">recomendaciones</a>
+            <a href="plantillas.html">Plantillas</a>
+	    <a href="consejos.html">Consejos</a>
+            <a href="juegos.html">Juegos</a>
+            <a href="contactos.html">Contactos</a>
+        </nav>
+    </header>
+ <h1><font color="#00FFFF">CONOCE LAS 12 TECNICAS MAS UTILIZADAS</font></h1>
+<fieldset>
+<font color="#FFFFFF">
+<center>
+<p>Las técnicas ofrecen beneficios como el aumento de la eficiencia y la productividad, la resolución de problemas de forma práctica, la adaptación al entorno y la superación de limitaciones naturales.</p>
+</center>
+</font>
+</fieldset>
+    <main>
+        <h2 class="titulo-seccion">Menu de las tecnica de Estudio</h2>
+
+<fieldset>
+     <section id="subrayado" class="tecnica"
+<font color="#00FFFF">
+<a href="1subrayado.html" target="_blank"><font color="#00FFFF"><h3>1. LA TECNICA DE SUBRAYADO</h3></font></a>
+</font>
+<font color="#FFFFFF">
+
+        <p>Es RESALTAR la información importante de un texto.</p>
+       
+	<center>
+	<img src="sss.jpg" align="center" width="600" height="400" alt="Resumen"></center>
+<br>
+        </div>
+    </section>
+</font>
+</fieldset>
+
+<br>
+<fieldset>
+        <section id="resumen" class="tecnica">
+<font color="#00FFFF">
+<a href="2resumen.html" target="_blank"><font color="#00FFFF"><h3>2. LA TECNICA DE RESUMEN</h3></font></a>
+</font>
+
+<font color="#FFFFFF">
+	<p>Reescribe la información principal con tus propias palabras.</p>
+
+<center>
+	<img src="rrr.jpg" align="center" width="600" height="300" alt="Resumen"></center>
+	
+             </div>
+</section>
+</font>
+</fieldset>
+<br>
+<fieldset>
+        <section id="cornell" class="tecnica">
+            <font color="#00FFFF">
+<a href="3cornell.html" target="_blank"><font color="#00FFFF"><h3>3. LA TECNICA DE CORNELL</h3></font></a>
+
+<font color="#FFFFFF">
+            <p>Divide tu hoja en secciones para anotar ideas, palabras clave y un resumen final.</p>
+           
+<center>
+	<img src="co.png" align="center" width="600" height="300" alt="Resumen"></center>
+
+     </div>
+        </section>
+</font>
+</fieldset>
+
+<br>
+<fieldset>
+        <section id="cuadrocomparativo" class="tecnica">
+  <font color="#00FFFF">
+<a href="4comparativo.html" target="_blank"><font color="#00FFFF"><h3>4. LA TECNICA DE CUADRO COMPARATIVO</h3></font></a>
+<font color="#FFFFFF">
+            <p>Permite comparar conceptos, teorías o personajes en una tabla visual.</p>
+            
+<center>
+	<img src="ccc.webp" align="center" width="600" height="300" alt="Resumen"></center>
+
+     </div>
+        </section>
+</font>
+</fieldset>
+        
+<br>
+<fieldset>
+        <section id="cuadrosinoptico" class="tecnica">
+          <font color="#00FFFF">
+<a href="5sinoptico.html" target="_blank"><font color="#00FFFF"><h3>5. LA TECNICA DE CUADRO SINOPTICO</h3></font></a>
+
+<font color="#FFFFFF">
+            <p>Organiza la información jerárquicamente mediante líneas y llaves.</p>
+           
+<center>
+	<img src="sc.webp" align="center" width="600" height="300" alt="Resumen"></center>
+
+            </div>
+        </section>
+</font>
+</fieldset>
+
+<br>
+<fieldset>
+       <section id="flash cards" class="tecnica">
+           <font color="#00FFFF">
+<a href="6flashcards.html" target="_blank"><font color="#00FFFF"><h3>6. LA TECNICA DE LAS FLASH CARDS</h3></font></a>
+<font color="#FFFFFF">
+            <p>Son pequeñas tarjetas didacticas de doble cara, en un lado va la informacion o las preguntas y en la otra las imagenes</p>
+           
+<center>
+	<img src="ff.jpg" align="center" width="600" height="300" alt="Resumen"></center>
+            </div>
+   </section>
+</font>
+</fieldset>
+<br>
+<fieldset>
+	<section id="Feynman" class="tecnica">
+          <a href="7feynman.html" target="_blank"><font color="#00FFFF"><h3>7. LA TECNICA DE FEYNMAN</h3></font></a>
+
+<font color="#FFFFFF">
+            <p>Es el metodo aprende comprende</p>
+        <center>
+	<img src="tcc.jpg" align="center" width="600" height="300" alt="Resumen"></center>
+            </div>
+        </section>
+</font>
+</fieldset>
+<br>
+<fieldset>
+	<section id="Leitner" class="tecnica">
+             <a href="8leitner.html" target="_blank"><font color="#00FFFF"><h3>8. LA TECNICA DE LEITNER</h3></font></a>
+
+<font color="#FFFFFF">
+            <p>Es la convinacion de dos tecnicas, la repeticion espaciada y las flash cards, es utilizado para MEMORIZAR</p>
+           <center>
+	<img src="tl.png" align="center" width="600" height="300" alt="Resumen"></center>
+            </div>
+        </section>
+</font>
+</fieldset>
+
+<br>
+<fieldset>
+	<section id="Repeticion espaciada" class="tecnica">
+           <a href="9espaciada.html" target="_blank"><font color="#00FFFF"><h3>9. LA TECNICA DE REPETICION ESPACIADA</h3></font></a>
+<font color="#FFFFFF">
+            <p>ES estudiar con anticipacion, una o dos semanas antes, con el objetivo de no olvidar lo que uno estudia</p>
+<center>
+                <img src="rrrr.webp" align="center" width="600" height="300" alt="flash cards"></center>
+            </div>
+        </section>
+</font>
+</fieldset>
+
+<br>
+<fieldset>
+<section id="mapa conceptual" class="tecnica">
+             <a href="10conceptual.html" target="_blank"><font color="#00FFFF"><h3>10. LA TECNICA DEL MAPA CONCEPTUAL</h3></font></a>
+<font color="#FFFFFF">
+            <p>Conectar ideas y conceptos a través de líneas y palabras de enlace</p>
+           <center>
+                <img src="mp.jpg" align="center" width="600" height="300" alt="flash cards"></center>
+            </div>
+        </section>
+</font>
+</fieldset>
+<br>
+<fieldset>
+<section id="mapa mental" class="tecnica">
+            <a href="11mental.html" target="_blank"><font color="#00FFFF"><h3>11. LA TECNICA DEL MAPA MENTAL</h3></font></a>
+<font color="#FFFFFF">
+            <p>Es una herramienta gráfica para organizar ideas, conceptos y tareas de forma visual y no lineal a partir de un tema central</p>
+
+              <center>
+                <img src="mm.jpg" align="center" width="600" height="300" alt="flash cards"></center>  
+           
+            </div>
+        </section>
+</font>
+</fieldset>
+<br>
+<fieldset>
+        <section id="pomodoro" class="tecnica">
+           <a href="12pomodoro.html" target="_blank"><font color="#00FFFF"><h3>12. LA TECNICA DE POMODORO</h3></font></a>
+<font color="#FFFFFF">
+            <p>El método Pomodoro es una técnica de gestión del tiempo que divide el trabajo en intervalos de 25 minutos (llamados "pomodoros"), seguidos de breves descansos de 5 minutos. Tras completar cuatro "pomodoros", se toma un descanso más largo de 15 a 30 minutos.</p>
+           <center><img src="p.jpg" align="center" width="600" height="300" alt="pomodoro">
+ </font></center>
+            
+            </div>
+        </section>
+</fieldset>
+        
+  
+    </script>
+
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#hero">Inicio</a> |
+    <a href="#calendario">Calendario Mensual</a> |
+    <a href="#contenedor-tareas">Calendario de Tareas</a>
+  </div>
+  <div>© 2025 JAZIER-AST | Créditos: Desarrollo por JAZIER-AST</div>
+  <div>Contacto: Teléfono 73212128 | Email: contacto@jazierast.com</div>
+</footer>
+
+</body>
+</html>
+
+
+
