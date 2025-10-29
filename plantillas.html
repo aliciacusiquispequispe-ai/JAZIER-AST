@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantillas - JAZIER-AST</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: url('ffff.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      padding: 15px 60px;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+    }
+
+    .logo { font-weight: bold; font-size: 1.3em; color: #00FFFF; }
+    nav a {
+      color: #ddd; margin: 0 15px; text-decoration: none; transition: color 0.3s;
+    }
+    nav a:hover, nav a.active { color: #00FFFF; }
+
+    /* CONTENIDO */
+    section {
+      padding: 140px 10% 60px;
+      text-align: center;
+    }
+
+    section h1 {
+      color: #00FFFF;
+      margin-bottom: 20px;
+      font-size: 2em;
+      text-shadow: 0 0 10px #00FFFF;
+    }
+
+    fieldset {
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    fieldset img {
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* CARRUSEL */
+    .carousel {
+      position: relative;
+      width: 80%;
+      margin: 50px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0,255,255,0.5);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      padding: 60px 20px;
+      text-align: center;
+      color: white;
+      font-size: 1.2em;
+    }
+
+    .carousel-item h3 {
+      color: #00FFFF;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px #00FFFF;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,255,255,0.5);
+      border: none;
+      color: black;
+      font-size: 1.5em;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0,255,255,0.8);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* PLANTILLAS */
+    h2 {
+      color: #00bcd4;
+      margin-top: 50px;
+      font-size: 1.7em;
+    }
+
+    .plantillas {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .plantillas a.descargar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 180px;
+      background: rgba(0, 188, 212, 0.8);
+      border-radius: 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 15px;
+      transition: transform 0.3s, background 0.3s;
+      text-align: center;
+    }
+
+    .plantillas a.descargar img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+    }
+
+    .plantillas a.descargar:hover {
+      background: rgba(0,150,167,0.9);
+      transform: translateY(-5px);
+    }
+
+    /* INSTRUCCIONES DE PLANTILLAS */
+    .instrucciones {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 90%;
+      margin: 40px auto;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid rgba(0,255,255,0.4);
+    }
+
+    .item-instruccion {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: center;
+      background: rgba(0,188,212,0.15);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: left;
+      gap: 15px;
+    }
+
+    .item-instruccion a {
+      text-decoration: none;
+      color: #00FFFF;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+
+    .item-instruccion a:hover { color: #fff; }
+
+    .item-instruccion p {
+      color: #f5f5f5;
+      font-size: 0.95em;
+      text-align: justify;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      background: rgba(0,0,0,0.85);
+      padding: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 15px 20px; flex-direction: column; }
+      .plantillas { flex-direction: column; align-items: center; }
+      .carousel-item { font-size: 1em; padding: 40px 10px; }
+      .item-instruccion { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="recomendaciones.html">Recomendaciones</a>
+      <a href="plantillas.html" class="active">Plantillas</a>
+      <a href="consejos.html">Consejos</a>
+      <a href="juegos.html">Juegos</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+  <section>
+    <h1>PLANTILLAS RECOMENDADAS PARA HACER TÉCNICAS DE ESTUDIO</h1>
+
+    <fieldset>
+      <p>
+        Las plantillas ayudan a repartir la carga del pie de forma equilibrada, lo que reduce el dolor, previene lesiones y mejora la postura y la estabilidad.
+        Actúan como soporte para el arco plantar, reducen la presión en zonas de sobrecarga, amortiguan los impactos y alivian problemas como la fascitis plantar
+        o el dolor de rodilla, mejorando la comodidad y el rendimiento tanto deportivo como diario.
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <img src="eee.jpg" alt="Mapa Mental">
+    </fieldset>
+
+    <h1>BENEFICIOS</h1>
+
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="carousel-track">
+        <div class="carousel-item"><h3>1. Organización</h3><p>Permite estructurar la información de forma clara y lógica.</p></div>
+        <div class="carousel-item"><h3>2. Ahorro de tiempo</h3><p>Facilita el estudio al contar con estructuras ya listas para usar.</p></div>
+        <div class="carousel-item"><h3>3. Claridad visual</h3><p>Mejora la comprensión mediante diseños limpios y ordenados.</p></div>
+        <div class="carousel-item"><h3>4. Seguimiento del progreso</h3><p>Permite evaluar avances y áreas de mejora en tu aprendizaje.</p></div>
+        <div class="carousel-item"><h3>5. Motivación</h3><p>Diseños atractivos que hacen el estudio más agradable y dinámico.</p></div>
+        <div class="carousel-item"><h3>6. Personalización</h3><p>Se adaptan a tus preferencias y estilo de aprendizaje.</p></div>
+        <div class="carousel-item"><h3>7. Reducción del estrés</h3><p>Brindan orden y control sobre las tareas y estudios.</p></div>
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+
+    <p style="margin-top: 30px;">Estas plantillas son recomendadas para facilitar la aplicación de las técnicas de estudio.</p>
+
+    <h2>RECOMENDACIONES DE SITIOS WEB PARA PLANTILLAS GRATUITAS</h2>
+
+    <div class="plantillas">
+      <a href="https://www.canva.com/templates/resume/" target="_blank" class="descargar">
+        <img src="https://img.icons8.com/fluency/48/ffffff/edit-file.png" alt="Editar">
+        <span>Plantilla de resumen</span>
+      </a>
+      <a href="https://www.canva.com/templates/mind-maps/" target="_blank" class="descargar">
+        <img src="https://img.icons8.com/fluency/48/ffffff/brain.png" alt="Mapa Mental">
+        <span>Plantilla de mapa mental</span>
+      </a>
+      <a href="https://www.vertex42.com/ExcelTemplates/weekly-schedule.html" target="_blank" class="descargar">
+        <img src="https://img.icons8.com/fluency/48/ffffff/calendar.png" alt="Horario">
+        <span>Plantilla de horario semanal</span>
+      </a>
+      <a href="https://www.template.net/editable/flashcards" target="_blank" class="descargar">
+        <img src="https://img.icons8.com/fluency/48/ffffff/cards.png" alt="Fichas">
+        <span>Plantilla de fichas de repaso</span>
+      </a>
+    </div>
+
+    <!-- INSTRUCCIONES -->
+    <div class="instrucciones">
+      <div class="item-instruccion">
+        <a href="https://www.canva.com/templates/resume/" target="_blank">📄 Plantilla de Resumen</a>
+        <p>Ingresa al enlace y selecciona un diseño que te guste. Haz clic en "Usar esta plantilla", edita los textos con tus propios apuntes o resúmenes, y guarda el archivo en formato PDF o imagen. Ideal para condensar la información más importante de tus temas de estudio.</p>
+      </div>
+
+      <div class="item-instruccion">
+        <a href="https://www.canva.com/templates/mind-maps/" target="_blank">🧠 Plantilla de Mapa Mental</a>
+        <p>Elige una plantilla visual, agrega el tema principal en el centro y las ideas secundarias alrededor. Usa colores y conectores para resaltar relaciones entre conceptos. Puedes descargarla o imprimirla para repasar visualmente tus temas.</p>
+      </div>
+
+      <div class="item-instruccion">
+        <a href="https://www.vertex42.com/ExcelTemplates/weekly-schedule.html" target="_blank">📅 Plantilla de Horario Semanal</a>
+        <p>Descarga la hoja de cálculo y personalízala con tus horarios de estudio y descanso. Te ayuda a distribuir tus tiempos y aplicar técnicas como Pomodoro o bloques de estudio según tus materias o actividades.</p>
+      </div>
+
+      <div class="item-instruccion">
+        <a href="https://www.template.net/editable/flashcards" target="_blank">🃏 Plantilla de Fichas de Repaso</a>
+        <p>Abre el enlace y elige un formato de flashcards. Escribe una pregunta o concepto al frente y la respuesta en el reverso. Son ideales para practicar memoria activa y autoevaluarte antes de los exámenes.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 JAZIER-AST. Todos los derechos reservados.</footer>
+
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const items = Array.from(track.children);
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const width = items[0].getBoundingClientRect().width;
+      track.style.transform = `translateX(-${currentIndex * width}px)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+  </script>
+</body>
+</html>

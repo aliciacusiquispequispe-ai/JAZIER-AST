@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JAZIER-AST | Recomendaciones</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: #000 url('fondo.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .neblina {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 70%);
+      animation: moverNeblina 20s infinite linear;
+      opacity: 0.35; z-index: 0; pointer-events: none;
+    }
+    @keyframes moverNeblina {
+      0% { transform: translate(-10%, -10%) scale(1); }
+      50% { transform: translate(10%, 10%) scale(1.1); }
+      100% { transform: translate(-10%, -10%) scale(1); }
+    }
+
+    header.navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.6); padding: 15px 60px;
+      z-index: 10; backdrop-filter: blur(8px);
+    }
+    .logo { font-size: 1.4em; font-weight: 700; }
+    nav a { color: #ddd; text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s; }
+    nav a:hover, nav a.active { color: #00bcd4; }
+
+    .contenido {
+      padding: 140px 5% 60px 5%;
+      position: relative; z-index: 2;
+      background: rgba(0,0,0,0.5);
+      min-height: 100vh;
+    }
+
+    .contenido h1 {
+      font-size: 2.8em; color: #00bcd4; text-align: center;
+      margin-bottom: 40px; padding-bottom: 15px;
+      border-bottom: 2px solid rgba(0,188,212,0.5);
+      max-width: 900px; margin: 0 auto 40px auto;
+    }
+
+    .apps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .app-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,188,212,0.1);
+      border: 1px solid rgba(0,188,212,0.2);
+      border-radius: 12px;
+      padding: 15px 25px;
+      transition: background 0.3s;
+    }
+    .app-row:hover { background: rgba(0,188,212,0.2); }
+
+    .app-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-align: left;
+      flex: 1;
+    }
+    .app-info img {
+      width: 60px; height: 60px; border-radius: 10px; object-fit: cover;
+      border: 2px solid #00bcd4;
+    }
+    .app-info h2 { color: #00e5ff; margin-bottom: 5px; font-size: 1.2em; }
+    .app-info p { color: #ccc; font-size: 0.95em; }
+
+    .descargar-btn {
+      background: linear-gradient(90deg, #00bcd4, #0097a7);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+    .descargar-btn:hover {
+      background: linear-gradient(90deg, #00e5ff, #00bcd4);
+      transform: translateY(-2px);
+    }
+
+    .calificacion {
+      margin: 40px auto 0 auto;
+      background: rgba(20,20,20,0.8);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 500px;
+    }
+    .calificacion h3 { color: #fff; margin-bottom: 15px; }
+    .estrellas { display: inline-block; user-select: none; }
+    .estrella {
+      font-size: 2.1rem;
+      color: #777;
+      cursor: pointer;
+      padding: 6px 8px;
+      display: inline-block;
+      transition: color 0.18s, transform 0.12s;
+      outline: none;
+    }
+    .estrella:hover { transform: translateY(-4px); }
+    .estrella.active { color: #00e5ff; transform: none; }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      background: rgba(0,0,0,0.85);
+      padding: 20px 0;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 3;
+    }
+
+    @media (max-width: 768px) {
+      .app-row { flex-direction: column; text-align: center; gap: 15px; }
+      .app-info { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="neblina"></div>
+
+  <header class="navbar">
+    <div class="logo">JAZIER-AST</div>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="recomendaciones.html" class="active">Recomendaciones</a>
+      <a href="plantillas.html">Plantillas</a>
+      <a href="consejos.html">Consejos</a>
+      <a href="juegos.html">Juegos</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+  </header>
+
+  <section class="contenido">
+    <h1> Aplicaciones Recomendadas</h1>
+    <div class="apps-container">
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="eve.png" alt="Evernote">
+          <div>
+            <h2>Evernote</h2>
+            <p>Organiza tus notas y crea tus esquemas Cornell de forma digital.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://evernote.com/', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="onenote.jpg" alt="OneNote">
+          <div>
+            <h2>OneNote</h2>
+            <p>Ideal para tomar notas con la estructura del método Cornell.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://www.onenote.com/download', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="simnote.jpg" alt="Simplenote">
+          <div>
+            <h2>Simplenote</h2>
+            <p>Perfecta para apuntes rápidos y esquemas Cornell minimalistas.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://simplenote.com/', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="bear.jpg" alt="Bear">
+          <div>
+            <h2>Bear</h2>
+            <p>Ideal para usuarios Apple que usan el método Cornell para estudiar.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://bear.app/', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="goodnotes.jpeg" alt="GoodNotes">
+          <div>
+            <h2>GoodNotes</h2>
+            <p>La app favorita para estudiantes que usan iPad con el método Cornell.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://www.goodnotes.com/', '_blank')">Descargar</button>
+      </div>
+ <div class="app-row">
+        <div class="app-info">
+          <img src="cit.jpg" alt="Compare It">
+          <div>
+            <h2>Compare It</h2>
+            <p>Crea cuadros comparativos visuales de forma sencilla y efectiva.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://compareitapp.com', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="luci.jpg" alt="Lucidchart">
+          <div>
+            <h2>Lucidchart</h2>
+            <p>Diseña cuadros comparativos y diagramas en línea colaborativos.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://www.lucidchart.com/', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="canva.jpg" alt="Canva">
+          <div>
+            <h2>Canva</h2>
+            <p>Diseña cuadros comparativos con plantillas modernas y atractivas.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://www.canva.com/', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="mex.jpg" alt="Excel">
+          <div>
+            <h2>Microsoft Excel</h2>
+            <p>Usa tablas y gráficos para comparaciones detalladas de información.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://www.microsoft.com/es-es/microsoft-365/excel', '_blank')">Descargar</button>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <img src="gosh.jpg" alt="Google Sheets">
+          <div>
+            <h2>Google Sheets</h2>
+            <p>Crea cuadros comparativos colaborativos desde cualquier dispositivo.</p>
+          </div>
+        </div>
+        <button class="descargar-btn" onclick="window.open('https://www.google.com/sheets/about/', '_blank')">Descargar</button>
+      </div>
+    </div>
+
+  <div class="calificacion">
+    <h3>⭐ Califica nuestra página web</h3>
+    <div class="estrellas" id="estrellas">
+      <span class="estrella" data-valor="1">★</span>
+      <span class="estrella" data-valor="2">★</span>
+      <span class="estrella" data-valor="3">★</span>
+      <span class="estrella" data-valor="4">★</span>
+      <span class="estrella" data-valor="5">★</span>
+    </div>
+    <p id="mensaje-calificacion" style="margin-top:10px; color:#00e5ff;"></p>
+  </div>
+<br> 
+<br>
+  <footer>
+    © 2025 JAZIER-AST. Todo esfuerzo tiene su recompensa.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cont = document.getElementById('estrellas');
+      const mensaje = document.getElementById('mensaje-calificacion');
+      const estrellas = cont.querySelectorAll('.estrella');
+
+      const guardado = localStorage.getItem('jazier_calificacion');
+      if (guardado) {
+        marcarEstrellas(parseInt(guardado));
+        mensaje.textContent = `Última calificación: ${guardado} estrella${guardado > 1 ? 's' : ''}. ¡Gracias!`;
+      }
+
+      cont.addEventListener('click', (e) => {
+        const target = e.target.closest('.estrella');
+        if (!target) return;
+        const valor = parseInt(target.dataset.valor);
+        marcarEstrellas(valor);
+        mensaje.textContent = `¡Gracias por calificarnos con ${valor} estrella${valor > 1 ? 's' : ''}!`;
+        localStorage.setItem('jazier_calificacion', valor);
+      });
+
+      function marcarEstrellas(valor) {
+        estrellas.forEach(s => {
+          const v = parseInt(s.dataset.valor);
+          s.classList.toggle('active', v <= valor);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
