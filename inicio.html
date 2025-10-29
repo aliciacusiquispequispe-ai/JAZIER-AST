@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAZIER-AST | Inicio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a2d9d6d6a4.js" crossorigin="anonymous"></script>
+<style>
+/* --------------------- RESET --------------------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+body { color:#fff; }
+
+/* --------------------- NAVBAR --------------------- */
+header.navbar {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: rgba(0,0,0,0.7);
+  padding:15px 50px;
+  z-index:100;
+  backdrop-filter: blur(8px);
+}
+.logo { font-size:1.6em; font-weight:700; color:#00e5ff; }
+nav a { color:#ddd; text-decoration:none; margin:0 15px; font-weight:500; transition:color 0.3s; }
+nav a:hover, nav a.active { color:#00bcd4; }
+
+/* --------------------- HERO / INICIO --------------------- */
+#hero {
+  background: url('fondo1.jpeg') no-repeat center center;
+  background-size: cover;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding:0 20px;
+}
+#hero .texto-fondo p { font-size:1.2em; margin-bottom:10px; text-shadow: 1px 1px 6px rgba(0,0,0,0.7);}
+#hero .texto-fondo h2 { font-size:2.5em; font-weight:bold; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);}
+
+/* --------------------- SECCION INFORMACION --------------------- */
+#info {
+  background:#101217;
+  padding:40px 20px;
+}
+#info h1 { font-size:2.5em; margin-bottom:15px; color:#00ffff; }
+#info p { font-size:1.2em; max-width:700px; margin:auto; }
+
+}
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 300px;
+    margin: 10px;
+    transition: transform 0.2s;
+  }
+  .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;           
+  justify-content: flex-start ; 
+}
+  .main-content {
+  display: flex;
+  gap: 20px;
+}
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .card h2 {
+    color: #00ffff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .card p {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+
+/* --------------------- CARRUSEL --------------------- */
+.carrusel {
+  position: relative;
+  max-width: 800px;
+  margin: 30px auto;
+  text-align: center;
+}
+.carrusel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius:12px;
+}
+.carrusel .subtitulo {
+  position: absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background: rgba(0,0,0,0.5);
+  padding:8px 15px;
+  border-radius:5px;
+  font-size:1em;
+}
+.carrusel button {
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border:none;
+  color:white;
+  font-size:1.5em;
+  padding:5px 10px;
+  cursor:pointer;
+  border-radius:5px;
+}
+.carrusel button:hover { background: rgba(0,0,0,0.7); }
+.carrusel #prev { left:10px; }
+.carrusel #next { right:10px; }
+
+/* --------------------- CONTENEDOR CALENDARIOS --------------------- */
+.contenedor {
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:40px 20px;
+  flex-wrap: wrap;
+  background:#111;
+  border-top:2px solid #00e5ff;
+  border-bottom:2px solid #00e5ff;
+}
+
+/* --------------------- BLOQUES --------------------- */
+.bloque {
+  border-radius:15px;
+  padding:20px;
+  width:400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg,#1a1a1a,#0d0d0d);
+}
+
+/* --------------------- CALENDARIO MENSUAL --------------------- */
+#calendario h2 { color: #00FFFF; margin-bottom:10px; }
+table { width:100%; border-collapse: collapse; margin-top:10px; }
+th, td { padding:10px; text-align:center; border:1px solid rgba(255,255,255,0.2);}
+th { background: rgba(0,0,0,0.5); color:#00FFFF;}
+td { background: rgba(255,255,255,0.05); transition: background 0.3s; }
+td:hover { background: rgba(255,255,255,0.2); cursor:pointer;}
+td.hoy { background:#FFD700; color:black; font-weight:bold; border-radius:50%; }
+.nav-btn { background:#00FFFF; border:none; padding:5px 10px; margin:5px; border-radius:5px; cursor:pointer;}
+.nav-btn:hover { background:#FFD700; color:black; }
+
+/* --------------------- CALENDARIO DE TAREAS --------------------- */
+#contenedor-tareas h3 { margin-bottom:10px; color:white;}
+#contenedor-tareas input, #contenedor-tareas button {
+  display:block; width:100%; margin:10px 0; padding:10px; border-radius:5px; border:none; font-size:1em;
+}
+#contenedor-tareas input[type="text"], #contenedor-tareas input[type="date"] { background: rgba(255,255,255,0.9); color:black;}
+#contenedor-tareas button { background: #00FFFF; color:black; font-weight:bold; cursor:pointer; transition:0.3s; }
+#contenedor-tareas button:hover { background:#0099cc; color:white;}
+.tarea { background: rgba(255,255,255,0.15); margin-top:10px; padding:10px; border-radius:10px; display:flex; justify-content: space-between; align-items:center;}
+.tarea button { background:#ff4444; color:white; border:none; padding:6px 10px; border-radius:5px; cursor:pointer; margin-left:5px;}
+.tarea button:hover { background:#ff7777; }
+.tarea-completada { text-decoration:line-through; color:#ccc;}
+
+/* --------------------- FOOTER --------------------- */
+footer {
+  text-align:center;
+  padding:20px;
+  background:#111;
+  color:white;
+  margin-top:20px;
+}
+footer a { color:#00e5ff; margin:0 10px; text-decoration:none;}
+footer a:hover { text-decoration:underline;}
+
+@media(max-width:900px){
+  .contenedor{flex-direction:column;align-items:center;}
+  .bloque{width:90%;}
+  header.navbar{flex-direction:column; gap:10px; padding:15px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">JAZIER-AST</div>
+  <nav>
+    <a href="#hero" class="active">Inicio</a>
+    <a href="tecnicas.html">Técnicas</a>
+    <a href="recomendaciones.html">recomendaciones</a>
+    <a href="plantillas.html">Plantillas</a>
+    <a href="consejos.html">Consejos</a>
+    <a href="juegos.html">Juegos</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="texto-fondo">
+    <p>Dirigido a los estudiantes de la Unidad Educativa "La Primera"</p>
+    <h2>Refuerza tu conocimiento sobre las técnicas de estudio con JAZIER AST</h2>
+  </div>
+</section>
+
+<!-- SECCION DE INFORMACION -->
+<section id="info">
+  <h1>JAZIER-AST</h1>
+  <p>Estudiar puede convertirse en una actividad muy difícil si desconoces la técnica de estudio más adecuada para ti.</p>
+  <p>Una técnica de estudio puede definirse como una estrategia que se incorpora a los hábitos de estudio para facilitar la adquisición del aprendizaje</p>
+  <p>Descubre las mejores técnicas de estudio y recursos que te ayudarán a aprender de forma más efectiva y divertida.</p>
+
+<br>
+
+<div class="side-image">
+<center>
+    <img src="inicii.jpg" alt="Imagen de estudio" width="600" height="300">
+</center>
+ </div>
+
+<br>
+
+<left>
+<p> Conoce cuál método de estudio que se acople mejor a ti</p>
+<p>Estas son algunas técnicas de estudio que puedes poner en práctica para tener un mejor rendimiento académico:<p>
+</left>
+
+<br>
+
+<fieldset>
+<a href="1subrayado.html" target="_blank"><font color="#FFFFFF"><p> 1.SUBRAYADO </p></font></a>	
+<a href="2resumen.html" target="_blank"><font color="#FFFFFF"><p> 2.RESUMEN </p></font></a>	
+<a href="3cornell.html" target="_blank"><font color="#FFFFFF"><p> 3.METODO CORNELL </p></font></a>	
+<a href="4comparativo.html" target="_blank"><font color="#FFFFFF"><p> 4.CUADRO COMPARATIVO </p></font></a>	
+<a href="5sinoptico.html" target="_blank"><font color="#FFFFFF"><p> 5.CUADRO SINOPTICO </p></font></a>	
+<a href="6flashcards.html" target="_blank"><font color="#FFFFFF"><p> 6.FLASH CARDS </p></font></a>	
+<a href="7feynman.html" target="_blank"><font color="#FFFFFF"><p> 7.METODO FEYNMAN </p></font></a>	
+<a href="8leitner.html" target="_blank"><font color="#FFFFFF"><p> 8.METODO LEITNER </p></font></a>	
+<a href="9espaciada.html" target="_blank"><font color="#FFFFFF"><p> 9.REPETICION ESPACIADA </p></font></a>	
+<a href="10conceptual.html" target="_blank"><font color="#FFFFFF"><p> 10.MAPA CONCEPTUAL </p></font></a>
+<a href="11mental.html" target="_blank"><font color="#FFFFFF"><p> 11.MAPA MENTAL </p></font></a>	
+<a href="12pomodoro.html" target="_blank"><font color="#FFFFFF"><p> 12.METODO POMODORO </p></font></a>	
+</fieldset>
+
+<br>
+
+<div class="side-image">
+<center>
+    <img src="inicio ast.jpg" alt="Imagen de estudio" width="600" height="300">
+</center>
+ </div>
+<br>
+<fieldset>
+<font color="#00FFFF">
+  <legend>Qué son</legend>
+</font>
+  Son métodos o estrategias que ayudan a una persona a aprender de manera más efectiva, organizar y retener información, y prepararse para exámenes o trabajos escolares. Incluyen herramientas como tomar notas, resumir información, hacer esquemas, subrayar lo más importante o usar mnemotecnias para recordar datos. En pocas palabras, son formas inteligentes de estudiar para aprender mejor y más rápido.
+</fieldset>
+<br>
+<fieldset>
+<font color="#00FFFF">
+  <legend>Tipos principales</legend>
+</font>
+  Principales técnicas de estudio: Son los métodos más utilizados para aprender de manera efectiva y organizar la información. Entre las más importantes se encuentran: tomar apuntes, subrayar, hacer resúmenes, elaborar esquemas, planificar el estudio, repasar regularmente y usar mnemotecnias para recordar datos.
+</fieldset>
+<br>
+<fieldset>
+<font color="#00FFFF">
+  <legend>Estrategias complementarias</legend>
+</font>
+ Estrategias complementarias de estudio: Son métodos que apoyan y refuerzan el aprendizaje, pero no forman parte central del estudio. Entre las más comunes están: realizar trabajos escolares, tomar apuntes de clase, participar en discusiones, hacer ejercicios prácticos y usar recursos adicionales como videos o guías de estudio.
+</fieldset>
+<br>
+<fieldset>
+<font color="#00FFFF">
+  <legend>Enseñanza</legend>
+</font>
+ Modo de enseñanza de las técnicas de estudio: Se refiere a cómo los docentes ayudan a los estudiantes a aprender y aplicar estas técnicas de manera efectiva. Los métodos más recomendados son el modelado y el moldeado, donde el profesor muestra cómo usar la técnica y luego guía al estudiante para que la practique, fomentando un aprendizaje profundo y duradero.
+</fieldset>
+<br>
+<fieldset>
+<font color="#00FFFF">
+  <legend>Recursos disponibles</legend>
+</font>
+  Recursos disponibles para las técnicas de estudio: Son materiales y herramientas que ayudan a aprender y aplicar las técnicas de estudio de manera más efectiva. Incluyen libros especializados, guías de estudio, sitios web educativos, videos, cursos y aplicaciones que explican métodos como mapas mentales, resúmenes, esquemas y mnemotecnias.
+</fieldset>
+<br>
+<fieldset>
+<font color="#00FFFF">
+  <legend>Aplicabilidad</legend>
+</font>
+ Aplicabilidad de las técnicas de estudio: Se refiere a cómo y dónde se pueden usar estas técnicas. Pueden aplicarse de forma general a cualquier materia o área de estudio, o adaptarse a disciplinas específicas, teniendo en cuenta el estilo de aprendizaje y las habilidades de cada estudiante.
+</fieldset>
+<br>
+<fieldset>
+<br>
+<center>
+		 <img src="aei.jpg" align="center" width="600" height="300" alt="TECNICAS">
+</center>
+<br>
+</fieldset>
+
+<!-- CARRUSEL -->
+
+	<h1>BENEFICIOS</h1>
+
+<div class="carrusel">
+  <div class="subtitulo" id="subtitulo">1. Mejora del Rendimiento</div>
+  <img src="mejora.jpeg" id="imagenCarrusel" alt="Imagen 1">
+  <button id="prev">&#10094;</button>
+  <button id="next">&#10095;</button>
+</div>
+
+        <div class="seccion">
+            <ul>
+<br>
+                <h1><li><i class="fas fa-brain icono"></i> Mayor Retención y Comprensión</li></h1>
+<fieldset>
+<br>
+<p>La mayor retención y comprensión es un beneficio de las técnicas de estudio, ya que permiten organizar, analizar y practicar la información de manera efectiva, facilitando que el estudiante entienda mejor los contenidos y los recuerde por más tiempo.</p>
+<br>
+<center>
+		 <img src="mc.jpeg" align="center" width="600" height="300" alt="mapa conceptual">
+</center>
+<br>
+</fieldset>
+
+<br>
+                <h1><li><i class="fas fa-clock icono"></i> Optimización del Tiempo.</li></h1>
+<fieldset>
+<br>
+<p>La optimización del tiempo es un beneficio de las técnicas de estudio, porque nos ayudan a planificar y aprovechar mejor las horas de estudio, evitando distracciones y permitiendo cumplir las tareas de forma más rápida y eficiente.</p>
+<br>
+<center>
+		 <img src="reloj.jpeg" align="center" width="600" height="300" alt="mapa conceptual">
+</center>
+<br>
+</fieldset>
+
+<br>
+                <h1><li><i class="fas fa-wind icono"></i> Reducción del Estrés y la Ansiedad.</li></h1>
+<fieldset>
+<br>
+<p>La reducción del estrés y la ansiedad es un beneficio de las técnicas de estudio,al tener una mejor organización y control del aprendizaje, el estudiante se siente más seguro, tranquilo y confiado, disminuyendo la presión al momento de estudiar o rendir evaluaciones.</p>
+<br>
+<center>
+		 <img src="paz.jpeg" align="center" width="600" height="300" alt="mapa conceptual">
+</center>
+<br>
+</fieldset>
+
+<br>
+                <h1><li><i class="fas fa-cogs icono"></i> Desarrollo de Habilidades Transferibles.</li></h1>
+<fieldset>
+<br>
+<p>El desarrollo de habilidades es un beneficio de las técnicas de estudio, porque fomentan capacidades como la concentración, el análisis, la organización y la autodisciplina, que mejoran tanto el rendimiento académico como el aprendizaje personal y profesional.</p>
+<br>
+<center>
+		 <img src="h.jpeg" align="center" width="600" height="300" alt="mapa conceptual">
+</center>
+<br>
+</fieldset>
+
+<br>
+                <h1><li><i class="fas fa-trophy icono"></i> Mejora del Rendimiento General.</li></h1>
+<fieldset>
+<br>
+<p>La mejora del rendimiento general es un beneficio de las técnicas de estudio, ya que permiten aprender de manera más efectiva, comprender mejor los temas y aprovechar el tiempo de estudio, lo que se traduce en mejores resultados académicos y mayor éxito en el aprendizaje.</p>
+<br>
+<center>
+		 <img src="mra.jpeg" align="center" width="600" height="300" alt="mapa conceptual">
+</center>
+<br>
+            </ul>
+</fieldset>
+        </div>
+
+<br>
+
+<fieldset>
+ 	<div class="seccion">
+<center>
+<p><font color="#00FFFF">
+            <h1>Consejos</h1>
+</font></p>
+</center>
+            <p>Las tecnicas de estudio no solo pueden ser utilizadas como se explican, tambien puede ser utilizada de forma convinada y asi resultaria mas efectiva</p>
+            <p>Puedes convinarla, para obtener un mejor rendimiento. al combiar diferentes tecnicas aprovechas las fortalezas de cada uno<p>
+<br>
+<center>
+		<img src="it.jpeg" align="center" width="600" height="400" alt="tips de tecnicas">
+<br>
+</center>
+
+<center>
+		<p>Adaptalo a como a ti, mejor te funcione</p>
+<center>
+<fieldset>
+<br>
+<font color="#00FFFF"><form action="consejos.html" method="get">
+    <button type="submit"><h2>ENTRAR A LOS CONSEJOS</h2></button></font>
+</form>
+<br>
+        	</div>
+<br>
+
+</fieldset>
+
+<center>
+<font color="#00FFFF">
+  <legend><h1>JAZIER AST TE AYUDA A ORGANIZARTE</h1></legend>
+</font>
+</center>
+<fieldset>
+ Organizate mejor, a traves de este calendario de tareas
+</fieldset>
+
+<br>
+
+<!-- CONTENEDOR CALENDARIOS -->
+<div class="contenedor">
+  <!-- CALENDARIO MENSUAL -->
+  <div class="bloque" id="calendario"></div>
+
+  <!-- CALENDARIO DE TAREAS -->
+  <div class="bloque" id="contenedor-tareas">
+    <h3>Calendario de Tareas</h3>
+    <label for="tarea">Nombre de la tarea:</label>
+    <input type="text" id="tarea" placeholder="Ejemplo: Estudiar biología">
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha">
+    <button onclick="agregarTarea()">Agregar tarea</button>
+    <div id="listaTareas"></div>
+  </div>
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#hero">Inicio</a> |
+    <a href="#calendario">Calendario Mensual</a> |
+    <a href="#contenedor-tareas">Calendario de Tareas</a>
+  </div>
+  <div>© 2025 JAZIER-AST | Créditos: Desarrollo por JAZIER-AST</div>
+  <div>Contacto: Teléfono 73212128 | Email: contacto@jazierast.com</div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // --- Carrusel ---
+  const imagenes = [
+    {src:'mejora.jpeg', texto:'1. Mejora del Rendimiento'},
+    {src:'optimizacion.jpeg', texto:'2. Optimización del Tiempo'},
+    {src:'reduccion.jpeg', texto:'3. Reducción del Estrés'},
+    {src:'retencion.jpeg', texto:'4. Mayor Retención'},
+    {src:'desarrollo.jpeg', texto:'5. Desarrollo de Habilidades'},
+    {src:'motivacion.jpeg', texto:'6. Motivación Constante'}
+  ];
+  let index = 0;
+  const imgCarrusel = document.getElementById('imagenCarrusel');
+  const subtitulo = document.getElementById('subtitulo');
+  document.getElementById('prev').onclick = ()=>{
+  index = (index-1+imagenes.length)%imagenes.length;
+  imgCarrusel.src=imagenes[index].src;
+  subtitulo.innerText=imagenes[index].texto;
+}
+document.getElementById('next').onclick = ()=>{
+  index = (index+1)%imagenes.length;
+  imgCarrusel.src=imagenes[index].src;
+  subtitulo.innerText=imagenes[index].texto;
+}
+
+// Calendario mensual
+let mesActual = new Date().getMonth();
+let añoActual = new Date().getFullYear();
+function generarCalendario(mes,año){
+  const cont=document.getElementById('calendario');
+  const hoy=new Date();
+  const diaHoy=hoy.getDate(), mesHoy=hoy.getMonth(), añoHoy=hoy.getFullYear();
+  const meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const diasSemana=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const primerDia=new Date(año,mes,1).getDay();
+  const ultimoDia=new Date(año,mes+1,0).getDate();
+  let tabla=`<h2>${meses[mes]} ${año}</h2><button class="nav-btn" onclick="mesAnterior()">◀</button><button class="nav-btn" onclick="mesSiguiente()">▶</button><table><tr>`;
+  diasSemana.forEach(d=>tabla+=`<th>${d}</th>`); tabla+='</tr><tr>';
+  for(let i=0;i<primerDia;i++) tabla+='<td></td>';
+  for(let dia=1;dia<=ultimoDia;dia++){
+    const esHoy=dia===diaHoy&&mes===mesHoy&&año===añoHoy?'class="hoy"':'';
+    tabla+=`<td ${esHoy}>${dia}</td>`;
+    if((dia+primerDia)%7===0) tabla+='</tr><tr>';
+  }
+  tabla+='</tr></table>'; cont.innerHTML=tabla;
+}
+function mesAnterior(){ mesActual--; if(mesActual<0){ mesActual=11;añoActual--; } generarCalendario(mesActual,añoActual);}
+function mesSiguiente(){ mesActual++; if(mesActual>11){ mesActual=0;añoActual++; } generarCalendario(mesActual,añoActual);}
+generarCalendario(mesActual,añoActual);
+
+// Calendario de tareas
+const listaTareas=document.getElementById('listaTareas');
+function cargarTareas(){
+  const tareas=JSON.parse(localStorage.getItem('tareas'))||[];
+  listaTareas.innerHTML='';
+  if(tareas.length===0){ listaTareas.innerHTML='<p>No tienes tareas registradas.</p>'; return; }
+  tareas.forEach((t,i)=>{
+    listaTareas.innerHTML+=`<div class="tarea ${t.completada?'tarea-completada':''}">
+      <span>${t.nombre} 📆 ${t.fecha}</span>
+      <div>
+        <button onclick="toggleCompleta(${i})">✔</button>
+        <button onclick="eliminarTarea(${i})">Eliminar</button>
+      </div>
+    </div>`;
+  });
+}
+function agregarTarea(){
+  const nombre=document.getElementById('tarea').value;
+  const fecha=document.getElementById('fecha').value;
+  if(!nombre||!fecha){ alert("Completa ambos campos."); return; }
+  const tareas=JSON.parse(localStorage.getItem('tareas'))||[];
+  tareas.push({nombre,fecha,completada:false});
+  localStorage.setItem('tareas',JSON.stringify(tareas));
+  document.getElementById('tarea').value='';
+  document.getElementById('fecha').value='';
+  cargarTareas();
+}
+function eliminarTarea(i){
+  const tareas=JSON.parse(localStorage.getItem('tareas'))||[];
+  tareas.splice(i,1);
+  localStorage.setItem('tareas',JSON.stringify(tareas));
+  cargarTareas();
+}
+function toggleCompleta(i){
+  const tareas=JSON.parse(localStorage.getItem('tareas'))||[];
+  tareas[i].completada=!tareas[i].completada;
+  localStorage.setItem('tareas',JSON.stringify(tareas));
+  cargarTareas();
+}
+cargarTareas();
+</script>
+</body>
+</html>
